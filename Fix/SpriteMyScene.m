@@ -58,7 +58,7 @@ static float randomIndex = 0;
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     testNode.name= @"hero";
     hello.fontSize = 18;
-    hello.text= @"today";
+    hello.text= @"Today";
     [testNode addChild:hello];
     testNode.zRotation=M_PI/2;
     testNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:hello.frame.size];
@@ -113,7 +113,7 @@ static inline int rndInt(int low, int high) {
 {
     
     NSArray *word1 = @[ @"I", @"you", @"he", @"she" ];
-    NSArray *word2 = @[ @"broke", @"saved", @"lost", @"ruined" ];
+    NSArray *word2 = @[ @"broke", @"hurt", @"lost", @"ruined" ];
     NSArray *word3 = @[ @"the", @"my", @"our", @"every"];
     NSArray *word4 = @[ @"world", @"bed", @"mirror", @"heart"];
     NSArray *arrayOfArrays = [[NSArray alloc] initWithObjects:word1, word2, word3, word4, nil];

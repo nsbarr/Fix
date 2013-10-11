@@ -34,7 +34,7 @@
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     testNode.name= @"helloNode";
     hello.fontSize = 18;
-    hello.text= @"today";
+    hello.text= @"Today";
     [testNode addChild:hello];
     testNode.zRotation=M_PI/2;
     testNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:hello.frame.size];
@@ -56,9 +56,7 @@
                                   SKAction *moveintoplace = [SKAction moveByX: 0 y: -220 duration: 0.5];
                         [helloNode runAction: moveintoplace completion:^{
                             SKScene *spaceshipScene  = [[SpriteMyScene alloc] initWithSize:self.size];
-                            SKTransition *doors = [SKTransition fadeWithDuration:0.5];
-                            [self.view presentScene:spaceshipScene //transition:doors
-                             ];
+                            [self.view presentScene:spaceshipScene];
                         }];    }
                 }
 }
