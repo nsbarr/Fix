@@ -24,6 +24,7 @@
 		7843E18C17FE271000F4DC5F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843E16717FE271000F4DC5F /* UIKit.framework */; };
 		7843E19417FE271000F4DC5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7843E19217FE271000F4DC5F /* InfoPlist.strings */; };
 		7843E19617FE271000F4DC5F /* FixTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E19517FE271000F4DC5F /* FixTests.m */; };
+		7843E1A017FF459200F4DC5F /* demo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7843E19F17FF459200F4DC5F /* demo.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		7843E19117FE271000F4DC5F /* FixTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FixTests-Info.plist"; sourceTree = "<group>"; };
 		7843E19317FE271000F4DC5F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7843E19517FE271000F4DC5F /* FixTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FixTests.m; sourceTree = "<group>"; };
+		7843E19F17FF459200F4DC5F /* demo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		7843E16B17FE271000F4DC5F /* Fix */ = {
 			isa = PBXGroup;
 			children = (
+				7843E19F17FF459200F4DC5F /* demo.txt */,
 				7843E17417FE271000F4DC5F /* SpriteAppDelegate.h */,
 				7843E17517FE271000F4DC5F /* SpriteAppDelegate.m */,
 				7843E17717FE271000F4DC5F /* Main.storyboard */,
@@ -245,6 +248,7 @@
 				7843E18317FE271000F4DC5F /* Images.xcassets in Resources */,
 				7843E18117FE271000F4DC5F /* Spaceship.png in Resources */,
 				7843E17917FE271000F4DC5F /* Main.storyboard in Resources */,
+				7843E1A017FF459200F4DC5F /* demo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +481,7 @@
 				7843E19B17FE271000F4DC5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7843E19C17FE271000F4DC5F /* Build configuration list for PBXNativeTarget "FixTests" */ = {
 			isa = XCConfigurationList;
@@ -485,6 +490,7 @@
 				7843E19E17FE271000F4DC5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
