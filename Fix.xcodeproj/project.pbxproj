@@ -25,6 +25,7 @@
 		7843E19417FE271000F4DC5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7843E19217FE271000F4DC5F /* InfoPlist.strings */; };
 		7843E19617FE271000F4DC5F /* FixTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E19517FE271000F4DC5F /* FixTests.m */; };
 		7843E1A017FF459200F4DC5F /* demo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7843E19F17FF459200F4DC5F /* demo.txt */; };
+		78CBEBCD1808A7A8006E7D4A /* WelcomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		7843E19317FE271000F4DC5F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7843E19517FE271000F4DC5F /* FixTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FixTests.m; sourceTree = "<group>"; };
 		7843E19F17FF459200F4DC5F /* demo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo.txt; sourceTree = "<group>"; };
+		78CBEBCB1808A7A8006E7D4A /* WelcomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeMenu.h; sourceTree = "<group>"; };
+		78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeMenu.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 				7843E17B17FE271000F4DC5F /* SpriteViewController.m */,
 				7843E17D17FE271000F4DC5F /* SpriteMyScene.h */,
 				7843E17E17FE271000F4DC5F /* SpriteMyScene.m */,
+				78CBEBCB1808A7A8006E7D4A /* WelcomeMenu.h */,
+				78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */,
 				7843E18017FE271000F4DC5F /* Spaceship.png */,
 				7843E18217FE271000F4DC5F /* Images.xcassets */,
 				7843E16C17FE271000F4DC5F /* Supporting Files */,
@@ -267,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78CBEBCD1808A7A8006E7D4A /* WelcomeMenu.m in Sources */,
 				7843E17217FE271000F4DC5F /* main.m in Sources */,
 				7843E17F17FE271000F4DC5F /* SpriteMyScene.m in Sources */,
 				7843E17617FE271000F4DC5F /* SpriteAppDelegate.m in Sources */,

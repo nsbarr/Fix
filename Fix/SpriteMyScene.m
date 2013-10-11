@@ -118,7 +118,9 @@ static inline int rndInt(int low, int high) {
     NSArray *word4 = @[ @"world", @"bed", @"mirror", @"heart"];
     NSArray *arrayOfArrays = [[NSArray alloc] initWithObjects:word1, word2, word3, word4, nil];
 
-    
+    if (lengthofsentence > 4){
+        lengthofsentence = 1;
+    }
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     hello.text = [[arrayOfArrays objectAtIndex:lengthofsentence - 1] objectAtIndex:rndInt(0,4)];
     hello.fontSize = 18;
@@ -137,10 +139,25 @@ static inline int rndInt(int low, int high) {
     
 }
 
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    SKNode *hello = [self childNodeWithName:@"hero"];
+    UITouch *touch = [touches anyObject];
+    CGPoint pointToMove = [touch locationInNode: self];
+    CGFloat xlocation = pointToMove.x;
+    float speed = 400;
+    float distance = ABS(xlocation - hello.position.x)/1.0;
+    float time = distance/speed;
+    
+    
+    SKAction *teleport = [SKAction sequence:@[
+                                              [SKAction waitForDuration:0],
+                                              [SKAction moveTo:CGPointMake(xlocation, hello.position.y) duration:time]]];
+    [hello runAction: [SKAction repeatAction: teleport count:(1)]];
+
+}
 
 
-
-- (void)touchesEnded:(NSSet *) touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet *) touches withEvent:(UIEvent *)event {
     SKNode *hello = [self childNodeWithName:@"hero"];
     UITouch *touch = [touches anyObject];
     CGPoint pointToMove = [touch locationInNode: self];
@@ -178,19 +195,20 @@ static inline int rndInt(int low, int high) {
             firstBody = contact.bodyB;
             secondBody = contact.bodyA;
         }
-        firstBody.node.name = @"stuck";
-        
-        if (lengthofsentence < 4)
-        {
-        lengthofsentence = lengthofsentence + 1;
-        [firstBody.node removeAllActions];
+        firstBody.node.physicsBody.categoryBitMask = heroCategory;
+        firstBody.node.physicsBody.contactTestBitMask = rainCategory | heroCategory;
+        firstBody.node.name = @"abouttogetstuck";
+            lengthofsentence = lengthofsentence + 1;
+                [firstBody.node removeAllActions];
         [self enumerateChildNodesWithName:@"rain" usingBlock:^(SKNode *node, BOOL *stop) {
-            [node removeFromParent];
-             }];
-        }
-        else {
-            lengthofsentence = 1;
-        }
+            node.physicsBody.categoryBitMask = 0;
+            node.physicsBody.contactTestBitMask = 0;
+            node.physicsBody.collisionBitMask = 0;
+            SKAction *disappear = [SKAction fadeOutWithDuration:1];
+            [node runAction: disappear];
+        }];
+
+        
     }
     
 
@@ -229,11 +247,11 @@ static inline int rndInt(int low, int high) {
 
 
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
  
-}
+//}
 
 
 -(void)didSimulatePhysics
@@ -249,13 +267,23 @@ static inline int rndInt(int low, int high) {
 -(void)update:(CFTimeInterval)currentTime {
     SKNode *hero = [self childNodeWithName:@"hero"];
     /* Called before each frame is rendered */
-    [self enumerateChildNodesWithName:@"stuck" usingBlock:^(SKNode *node, BOOL *stop) {
-        
-        node.position = CGPointMake(hero.position.x, node.position.y);
-        if (node.position.y > _sentenceheight) {
-            _sentenceheight = node.position.y;
-        }
+    [self enumerateChildNodesWithName:@"abouttogetstuck" usingBlock:^(SKNode *node, BOOL *stop) {
+    
+    node.position = CGPointMake(hero.position.x, node.position.y);
+    _sentenceheight = node.position.y;
+
+       // if (node.position.y > _sentenceheight) {
+       // }
         
     }];
-     }
+    
+    [self enumerateChildNodesWithName:@"rain" usingBlock:^(SKNode *node, BOOL *stop) {
+        if (node.position.y < _sentenceheight)
+        {
+
+            SKAction *disappear = [SKAction fadeOutWithDuration:4];
+            [node runAction: disappear];
+        }
+    }];
+    }
 @end

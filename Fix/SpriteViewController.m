@@ -7,7 +7,7 @@
 //
 
 #import "SpriteViewController.h"
-#import "SpriteMyScene.h"
+#import "WelcomeMenu.h"
 
 @implementation SpriteViewController
 
@@ -21,7 +21,7 @@
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [SpriteMyScene sceneWithSize:skView.bounds.size];
+    SKScene * scene = [WelcomeMenu sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
