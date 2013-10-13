@@ -7,6 +7,10 @@
 //
 
 #import "SpriteMyScene.h"
+#import "GameOver.h"
+#import "SocialShare.m"
+
+
 
 @interface SpriteMyScene () <SKPhysicsContactDelegate>
 @property BOOL contentCreated;
@@ -105,20 +109,24 @@ static inline int rndInt(int low, int high) {
 - (void)addWord
 {
     
-    NSArray *word1 = @[ @"I", @"you", @"he", @"she" ];
-    NSArray *word2 = @[ @"broke", @"hurt", @"lost", @"ruined" ];
-    NSArray *word3 = @[ @"the", @"my", @"our", @"every"];
-    NSArray *word4 = @[ @"world", @"bed", @"mirror", @"heart"];
-    NSArray *arrayOfArrays = [[NSArray alloc] initWithObjects:word1, word2, word3, word4, nil];
+    NSArray *word1 = @[ @"I", @"you", @"he", @"she", @"we", @"someone", @"they" ];
+    NSArray *word2 = @[ @"broke", @"hurt", @"lost", @"ruined", @"tore", @".", @"missed" ];
+    NSArray *word3 = @[ @"the", @"my", @"our", @"every", @"this", @".", @"?"];
+    NSArray *word4 = @[ @"world", @"bed", @"mirror", @"heart", @"chance", @".", @"?"];
+    NSArray *word5 = @[ @"that", @".", @"!", @"?", @".", @"!", @"?"];
+    NSArray *arrayOfArrays = [[NSArray alloc] initWithObjects:word1, word2, word3, word4, word5, nil];
 
-    if (lengthofsentence > 4){
+    if (lengthofsentence > 5){
         lengthofsentence = 1;
     }
     SKSpriteNode *parentNode = [[SKSpriteNode alloc] init];
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
-    hello.text = [[arrayOfArrays objectAtIndex:lengthofsentence - 1] objectAtIndex:rndInt(0,4)];
-    if ([hello.text  isEqual: @"mirror"]){
+    hello.text = [[arrayOfArrays objectAtIndex:lengthofsentence - 1] objectAtIndex:rndInt(0,6)];
+    if ([hello.text isEqual: @"mirror"]){
         hello.name = @"mirror";
+    }
+    else if ([hello.text isEqual: @"."]){
+        hello.name = @"sentenceEnder";
     }
     hello.fontSize = 18;
     [parentNode addChild: hello];
@@ -280,10 +288,10 @@ static inline int rndInt(int low, int high) {
     
 }
 
-
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
     SKNode *hero = [self childNodeWithName:@"hero"];
+    SKNode *rain = [self childNodeWithName:@"rain"];
 
     [self enumerateChildNodesWithName:@"abouttogetstuck" usingBlock:^(SKNode *node, BOOL *stop) {
 
@@ -304,9 +312,20 @@ static inline int rndInt(int low, int high) {
             }
             
         }];
+        [node enumerateChildNodesWithName:@"sentenceEnder" usingBlock:^(SKNode *raindrops, BOOL *stop) {
+            if ([raindrops.name  isEqual: @"sentenceEnder"]){
+                [self removeAllActions];
+                [rain removeFromParent];
+                
+               SocialShare *theview = [[SocialShare alloc] init];
+            [theview shareGuy];
+            }
+            
+        }];
         node.name = @"hero";
     }];
+}
 
 
-    }
+
 @end
