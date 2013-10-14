@@ -8,7 +8,6 @@
 
 #import "SpriteMyScene.h"
 #import "GameOver.h"
-#import "SocialShare.m"
 
 
 
@@ -317,8 +316,6 @@ static inline int rndInt(int low, int high) {
                 [self removeAllActions];
                 [rain removeFromParent];
                 
-               SocialShare *theview = [[SocialShare alloc] init];
-            [theview shareGuy];
             }
             
         }];
