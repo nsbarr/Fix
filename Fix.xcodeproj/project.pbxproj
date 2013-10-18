@@ -27,6 +27,7 @@
 		78CBEBCD1808A7A8006E7D4A /* WelcomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */; };
 		78CBEBD0180B22AA006E7D4A /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CBEBCF180B22AA006E7D4A /* GameOver.m */; };
 		78CBEBD3180B664A006E7D4A /* SocialShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CBEBD2180B664A006E7D4A /* SocialShare.m */; };
+		78CBEBD8180E0717006E7D4A /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CBEBD7180E0717006E7D4A /* TwitterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7843E16017FE271000F4DC5F /* Fix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7843E16017FE271000F4DC5F /* Today.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Today.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7843E16317FE271000F4DC5F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7843E16517FE271000F4DC5F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7843E16717FE271000F4DC5F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -69,6 +70,8 @@
 		78CBEBCF180B22AA006E7D4A /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOver.m; sourceTree = "<group>"; };
 		78CBEBD1180B664A006E7D4A /* SocialShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocialShare.h; path = ../SocialShare.h; sourceTree = "<group>"; };
 		78CBEBD2180B664A006E7D4A /* SocialShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocialShare.m; path = ../SocialShare.m; sourceTree = "<group>"; };
+		78CBEBD6180E0717006E7D4A /* TwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
+		78CBEBD7180E0717006E7D4A /* TwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +112,7 @@
 		7843E16117FE271000F4DC5F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7843E16017FE271000F4DC5F /* Fix.app */,
+				7843E16017FE271000F4DC5F /* Today.app */,
 				7843E18817FE271000F4DC5F /* FixTests.xctest */,
 			);
 			name = Products;
@@ -136,6 +139,8 @@
 				7843E17417FE271000F4DC5F /* SpriteAppDelegate.h */,
 				7843E17517FE271000F4DC5F /* SpriteAppDelegate.m */,
 				7843E17717FE271000F4DC5F /* Main.storyboard */,
+				78CBEBD6180E0717006E7D4A /* TwitterViewController.h */,
+				78CBEBD7180E0717006E7D4A /* TwitterViewController.m */,
 				7843E17A17FE271000F4DC5F /* SpriteViewController.h */,
 				7843E17B17FE271000F4DC5F /* SpriteViewController.m */,
 				7843E17D17FE271000F4DC5F /* SpriteMyScene.h */,
@@ -196,7 +201,7 @@
 			);
 			name = Fix;
 			productName = Fix;
-			productReference = 7843E16017FE271000F4DC5F /* Fix.app */;
+			productReference = 7843E16017FE271000F4DC5F /* Today.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7843E18717FE271000F4DC5F /* FixTests */ = {
@@ -282,6 +287,7 @@
 				7843E17217FE271000F4DC5F /* main.m in Sources */,
 				7843E17F17FE271000F4DC5F /* SpriteMyScene.m in Sources */,
 				78CBEBD0180B22AA006E7D4A /* GameOver.m in Sources */,
+				78CBEBD8180E0717006E7D4A /* TwitterViewController.m in Sources */,
 				7843E17617FE271000F4DC5F /* SpriteAppDelegate.m in Sources */,
 				78CBEBD3180B664A006E7D4A /* SocialShare.m in Sources */,
 				7843E17C17FE271000F4DC5F /* SpriteViewController.m in Sources */,
@@ -414,7 +420,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fix/Fix-Prefix.pch";
 				INFOPLIST_FILE = "Fix/Fix-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Today;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -428,7 +434,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fix/Fix-Prefix.pch";
 				INFOPLIST_FILE = "Fix/Fix-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Today;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};

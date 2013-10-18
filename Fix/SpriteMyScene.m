@@ -8,6 +8,8 @@
 
 #import "SpriteMyScene.h"
 #import "GameOver.h"
+#import "SpriteViewController.h"
+#import "TwitterViewController.h"
 
 
 
@@ -18,6 +20,7 @@
 
 CGFloat _sentenceheight = 0.00f;
 int lengthofsentence = 1;
+NSString *sentencetext = @"Today";
 
 
 static const uint32_t rainCategory       =  0x1 << 0;
@@ -124,14 +127,21 @@ static inline int rndInt(int low, int high) {
     if ([hello.text isEqual: @"mirror"]){
         hello.name = @"mirror";
     }
-    else if ([hello.text isEqual: @"."]){
+    else if ([hello.text isEqualToString: @"."]){
         hello.name = @"sentenceEnder";
     }
+    else if ([hello.text isEqualToString: @"?"]){
+        hello.name = @"sentenceEnder";
+    }
+    else if ([hello.text isEqualToString: @"!"]){
+        hello.name = @"sentenceEnder";
+    }
+
     hello.fontSize = 18;
     [parentNode addChild: hello];
     parentNode.name = @"rain";
     parentNode.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
-    parentNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(hello.frame.size.width+10,hello.frame.size.height+30)];
+    parentNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(hello.frame.size.width+10,hello.frame.size.height)];
     parentNode.physicsBody.usesPreciseCollisionDetection = YES;
     parentNode.physicsBody.dynamic = YES;
     parentNode.physicsBody.categoryBitMask = rainCategory;
@@ -184,6 +194,26 @@ static inline int rndInt(int low, int high) {
         [node runAction: [SKAction repeatAction: teleport count:(1)]];
         
     }];
+    
+    NSArray *nodes = [self nodesAtPoint:[touch locationInNode:self]];
+    for (SKNode *node in nodes) {
+        if ([node.name isEqualToString:@"OpenTweet"]) {
+            UIViewController *vc = self.view.window.rootViewController;
+            SpriteViewController *viewController = [SpriteViewController alloc];
+
+            
+            
+            NSLog(@"Root controller is %@", vc);
+            
+            [_spriteViewController showTweetButton];
+            
+            
+        }
+        else if ([node.name isEqualToString:@"NewGame"]) {
+            SKScene *spaceshipScene  = [[SpriteMyScene alloc] initWithSize:self.size];
+            [self.view presentScene:spaceshipScene];
+        }
+    }
     
     
     
@@ -316,13 +346,68 @@ static inline int rndInt(int low, int high) {
                 [self removeAllActions];
                 [rain removeFromParent];
                 
+                SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
+                SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
+                testNode.name= @"OpenTweet";
+                hello.fontSize = 18;
+                hello.text= @"Tweet";
+                testNode.zRotation = M_PI/2;
+                testNode.position = CGPointMake(230,58);
+                [testNode addChild:hello];
+                [self addChild: testNode];
+                
+                SKSpriteNode *otherNode = [[SKSpriteNode alloc] init];//parent
+                SKLabelNode *hi = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
+                otherNode.name= @"NewGame";
+                hi.fontSize = 18;
+                hi.text= @"Again";
+                otherNode.zRotation = M_PI/2;
+                otherNode.position = CGPointMake(230,510);
+                [otherNode addChild:hi];
+                [self addChild: otherNode];
+
+                
+              //  hello.name= @"hero";
+              //  hello.fontSize = 18;
+              //  hello.text= @"Today";
+      //          UIButton *testButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 10, 100, 30)];
+       //         [testButton setTitle:@"AWESOME" forState:UIControlStateNormal];
+                
+              //  UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+              //  [button addTarget:self
+              //             action:@selector(sendToController)
+              //  forControlEvents:UIControlEventTouchDown];
+              //  [button setTitle:@"Show View" forState:UIControlStateNormal];
+              //  button.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+
+               // [self.view addSubview:button];  //the error coming form this line
+                
+  //              [viewController showTweetButton];
+                // [TweetField setText:@"???"];
+               // self.view
+                
+                
+                
             }
             
         }];
         node.name = @"hero";
     }];
 }
+//- (void)showTweetButton
+//{
+//    NSLog(@"ok");
+//    SpriteViewController *viewController = [SpriteViewController alloc];
+//    [viewController showTweetButton];
+//}
 
+- (void)sendToController
+{
+    NSLog(@"ok");
+    // use the already-created spriteViewController
+    [_spriteViewController showTweetButton];
+
+}
 
 
 @end
