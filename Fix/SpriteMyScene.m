@@ -124,12 +124,14 @@ static inline int rndInt(int low, int high) {
     SKSpriteNode *parentNode = [[SKSpriteNode alloc] init];
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     hello.text = [[arrayOfArrays objectAtIndex:lengthofsentence - 1] objectAtIndex:rndInt(0,6)];
-    if ([hello.text isEqual: @"mirror"]){
-        hello.name = @"mirror";
-    }
-    else if ([hello.text isEqualToString: @"."]){
-        hello.name = @"sentenceEnder";
-    }
+    hello.name = hello.text;
+    
+//   if ([hello.text isEqual: @"mirror"]){
+ //       hello.name = @"mirror";
+//    }
+     if ([hello.text isEqualToString: @"."]){
+       hello.name = @"sentenceEnder";
+}
     else if ([hello.text isEqualToString: @"?"]){
         hello.name = @"sentenceEnder";
     }
@@ -140,6 +142,16 @@ static inline int rndInt(int low, int high) {
     hello.fontSize = 18;
     [parentNode addChild: hello];
     parentNode.name = @"rain";
+    
+ //   for (NSString *word in word1) {
+ //       SKLabelNode *thisword = [[SKLabelNode alloc] init];
+ //       thisword.text = word;
+//        thisword.name = word;
+ //       thisword.fontSize = 18;
+//        [parentNode addChild: thisword];
+ 
+ //   }
+       parentNode.name = @"rain";
     parentNode.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
     parentNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(hello.frame.size.width+10,hello.frame.size.height)];
     parentNode.physicsBody.usesPreciseCollisionDetection = YES;
