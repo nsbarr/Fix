@@ -23,11 +23,8 @@
 		7843E18C17FE271000F4DC5F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843E16717FE271000F4DC5F /* UIKit.framework */; };
 		7843E19417FE271000F4DC5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7843E19217FE271000F4DC5F /* InfoPlist.strings */; };
 		7843E19617FE271000F4DC5F /* FixTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E19517FE271000F4DC5F /* FixTests.m */; };
-		7843E1A017FF459200F4DC5F /* demo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7843E19F17FF459200F4DC5F /* demo.txt */; };
+		7891753018183B7D00E777B3 /* Sentence.m in Sources */ = {isa = PBXBuildFile; fileRef = 7891752F18183B7D00E777B3 /* Sentence.m */; };
 		78CBEBCD1808A7A8006E7D4A /* WelcomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */; };
-		78CBEBD0180B22AA006E7D4A /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CBEBCF180B22AA006E7D4A /* GameOver.m */; };
-		78CBEBD3180B664A006E7D4A /* SocialShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CBEBD2180B664A006E7D4A /* SocialShare.m */; };
-		78CBEBD8180E0717006E7D4A /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CBEBD7180E0717006E7D4A /* TwitterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,15 +60,10 @@
 		7843E19117FE271000F4DC5F /* FixTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FixTests-Info.plist"; sourceTree = "<group>"; };
 		7843E19317FE271000F4DC5F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7843E19517FE271000F4DC5F /* FixTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FixTests.m; sourceTree = "<group>"; };
-		7843E19F17FF459200F4DC5F /* demo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo.txt; sourceTree = "<group>"; };
+		7891752E18183B7D00E777B3 /* Sentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sentence.h; sourceTree = "<group>"; };
+		7891752F18183B7D00E777B3 /* Sentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sentence.m; sourceTree = "<group>"; };
 		78CBEBCB1808A7A8006E7D4A /* WelcomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeMenu.h; sourceTree = "<group>"; };
 		78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeMenu.m; sourceTree = "<group>"; };
-		78CBEBCE180B22AA006E7D4A /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOver.h; sourceTree = "<group>"; };
-		78CBEBCF180B22AA006E7D4A /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOver.m; sourceTree = "<group>"; };
-		78CBEBD1180B664A006E7D4A /* SocialShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocialShare.h; path = ../SocialShare.h; sourceTree = "<group>"; };
-		78CBEBD2180B664A006E7D4A /* SocialShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocialShare.m; path = ../SocialShare.m; sourceTree = "<group>"; };
-		78CBEBD6180E0717006E7D4A /* TwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
-		78CBEBD7180E0717006E7D4A /* TwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,20 +125,15 @@
 		7843E16B17FE271000F4DC5F /* Fix */ = {
 			isa = PBXGroup;
 			children = (
-				78CBEBD1180B664A006E7D4A /* SocialShare.h */,
-				78CBEBD2180B664A006E7D4A /* SocialShare.m */,
-				7843E19F17FF459200F4DC5F /* demo.txt */,
 				7843E17417FE271000F4DC5F /* SpriteAppDelegate.h */,
 				7843E17517FE271000F4DC5F /* SpriteAppDelegate.m */,
 				7843E17717FE271000F4DC5F /* Main.storyboard */,
-				78CBEBD6180E0717006E7D4A /* TwitterViewController.h */,
-				78CBEBD7180E0717006E7D4A /* TwitterViewController.m */,
 				7843E17A17FE271000F4DC5F /* SpriteViewController.h */,
 				7843E17B17FE271000F4DC5F /* SpriteViewController.m */,
 				7843E17D17FE271000F4DC5F /* SpriteMyScene.h */,
 				7843E17E17FE271000F4DC5F /* SpriteMyScene.m */,
-				78CBEBCE180B22AA006E7D4A /* GameOver.h */,
-				78CBEBCF180B22AA006E7D4A /* GameOver.m */,
+				7891752E18183B7D00E777B3 /* Sentence.h */,
+				7891752F18183B7D00E777B3 /* Sentence.m */,
 				78CBEBCB1808A7A8006E7D4A /* WelcomeMenu.h */,
 				78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */,
 				7843E18217FE271000F4DC5F /* Images.xcassets */,
@@ -264,7 +251,6 @@
 				7843E17017FE271000F4DC5F /* InfoPlist.strings in Resources */,
 				7843E18317FE271000F4DC5F /* Images.xcassets in Resources */,
 				7843E17917FE271000F4DC5F /* Main.storyboard in Resources */,
-				7843E1A017FF459200F4DC5F /* demo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,11 +271,9 @@
 			files = (
 				78CBEBCD1808A7A8006E7D4A /* WelcomeMenu.m in Sources */,
 				7843E17217FE271000F4DC5F /* main.m in Sources */,
+				7891753018183B7D00E777B3 /* Sentence.m in Sources */,
 				7843E17F17FE271000F4DC5F /* SpriteMyScene.m in Sources */,
-				78CBEBD0180B22AA006E7D4A /* GameOver.m in Sources */,
-				78CBEBD8180E0717006E7D4A /* TwitterViewController.m in Sources */,
 				7843E17617FE271000F4DC5F /* SpriteAppDelegate.m in Sources */,
-				78CBEBD3180B664A006E7D4A /* SocialShare.m in Sources */,
 				7843E17C17FE271000F4DC5F /* SpriteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

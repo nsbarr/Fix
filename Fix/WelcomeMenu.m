@@ -72,8 +72,6 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     hello.physicsBody.collisionBitMask = 0;
 
     hello.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:hello.frame.size];
-   // SKAction *fall = [SKAction moveTo:CGPointMake(hello.position.x,-20) duration:4];
-   // [hello runAction: fall];
     [self addChild: hello];
 
 

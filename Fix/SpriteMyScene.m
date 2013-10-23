@@ -7,21 +7,21 @@
 //
 
 #import "SpriteMyScene.h"
-#import "GameOver.h"
 #import "SpriteViewController.h"
-#import "TwitterViewController.h"
-
+#import "Sentence.h"
 
 
 @interface SpriteMyScene () <SKPhysicsContactDelegate>
 @property BOOL contentCreated;
 
+
+
 @end
 
 CGFloat _sentenceheight = 0.00f;
 int lengthofsentence = 1;
-NSString *sentencetext = @"Today";
-
+NSString *sentenceSoFar = nil;
+BOOL isGameOver = NO;
 
 static const uint32_t rainCategory       =  0x1 << 0;
 static const uint32_t heroCategory       =  0x1 << 1;
@@ -29,10 +29,12 @@ static const uint32_t heroCategory       =  0x1 << 1;
 
 @implementation SpriteMyScene
 
+
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-
+isGameOver = NO;
+lengthofsentence = 1;
         
     }
     return self;
@@ -57,7 +59,7 @@ static const uint32_t heroCategory       =  0x1 << 1;
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     testNode.name= @"hero";
     hello.fontSize = 18;
-    hello.text= @"Today";
+    hello.text= @"Today ";
     [testNode addChild:hello];
     testNode.zRotation=M_PI/2;
     testNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:hello.frame.size];
@@ -68,25 +70,11 @@ static const uint32_t heroCategory       =  0x1 << 1;
     testNode.position = CGPointMake(CGRectGetMidX(self.frame),
                                  CGRectGetMidY(self.frame)-220);
     _sentenceheight = hello.frame.size.width;
+    
+    sentenceSoFar=hello.text;
     return testNode;
     }
 
-
-
-
-
-NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
--(NSString *) genRandStringLength: (int) len {
-    
-    NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
-    
-    for (int i=0; i<len; i++) {
-        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random() % [letters length]]];
-    }
-    
-    return randomString;
-}
 
 
 
@@ -126,12 +114,9 @@ static inline int rndInt(int low, int high) {
     hello.text = [[arrayOfArrays objectAtIndex:lengthofsentence - 1] objectAtIndex:rndInt(0,6)];
     hello.name = hello.text;
     
-//   if ([hello.text isEqual: @"mirror"]){
- //       hello.name = @"mirror";
-//    }
-     if ([hello.text isEqualToString: @"."]){
+    if ([hello.text isEqualToString: @"."]){
        hello.name = @"sentenceEnder";
-}
+    }
     else if ([hello.text isEqualToString: @"?"]){
         hello.name = @"sentenceEnder";
     }
@@ -143,15 +128,7 @@ static inline int rndInt(int low, int high) {
     [parentNode addChild: hello];
     parentNode.name = @"rain";
     
- //   for (NSString *word in word1) {
- //       SKLabelNode *thisword = [[SKLabelNode alloc] init];
- //       thisword.text = word;
-//        thisword.name = word;
- //       thisword.fontSize = 18;
-//        [parentNode addChild: thisword];
- 
- //   }
-       parentNode.name = @"rain";
+    parentNode.name = @"rain";
     parentNode.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
     parentNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(hello.frame.size.width+10,hello.frame.size.height)];
     parentNode.physicsBody.usesPreciseCollisionDetection = YES;
@@ -167,6 +144,11 @@ static inline int rndInt(int low, int high) {
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    if (isGameOver) {
+        
+    }
+    else {
     SKNode *hello = [self childNodeWithName:@"hero"];
     UITouch *touch = [touches anyObject];
     CGPoint pointToMove = [touch locationInNode: self];
@@ -183,14 +165,19 @@ static inline int rndInt(int low, int high) {
         [node runAction: [SKAction repeatAction: teleport count:(1)]];
         
     }];
-
+    }
 }
 
 
 - (void)touchesBegan:(NSSet *) touches withEvent:(UIEvent *)event {
     
-    SKNode *hello = [self childNodeWithName:@"hero"];
     UITouch *touch = [touches anyObject];
+
+    if (isGameOver) {
+        
+    }
+    else {
+    SKNode *hello = [self childNodeWithName:@"hero"];
     CGPoint pointToMove = [touch locationInNode: self];
     
     CGFloat xlocation = pointToMove.x;
@@ -206,12 +193,13 @@ static inline int rndInt(int low, int high) {
         [node runAction: [SKAction repeatAction: teleport count:(1)]];
         
     }];
+    }
     
     NSArray *nodes = [self nodesAtPoint:[touch locationInNode:self]];
     for (SKNode *node in nodes) {
         if ([node.name isEqualToString:@"OpenTweet"]) {
             UIViewController *vc = self.view.window.rootViewController;
-            SpriteViewController *viewController = [SpriteViewController alloc];
+//            SpriteViewController *viewController = [SpriteViewController alloc];
 
             
             
@@ -231,7 +219,6 @@ static inline int rndInt(int low, int high) {
     
     
     
-    // NSString *realdistance = [NSString stringWithFormat:@"%f", distance];
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact {
@@ -254,6 +241,11 @@ static inline int rndInt(int low, int high) {
             firstBody = contact.bodyB;
             secondBody = contact.bodyA;
         }
+        NSArray *arrayOfChildren = firstBody.node.children;
+        SKNode *theNode = arrayOfChildren[0];
+        NSString *wordToAppend = [theNode.name stringByAppendingString:@" "];
+        sentenceSoFar = [sentenceSoFar stringByAppendingString:wordToAppend];
+        NSLog(@"%@",sentenceSoFar);
         firstBody.node.physicsBody.categoryBitMask = heroCategory;
         firstBody.node.physicsBody.contactTestBitMask = rainCategory | heroCategory;
         firstBody.node.name = @"abouttogetstuck";
@@ -270,12 +262,6 @@ static inline int rndInt(int low, int high) {
         
     }
     
-
-    //    BOOL sentencegrew = FALSE;
- //       if (sentencegrew == FALSE){
-  //          sentencegrew = TRUE;
-    //        _sentenceheight = _sentenceheight + firstBody.node.frame.size.width;
-    //    }
     
     else {
         NSLog(@"getlow");
@@ -306,11 +292,6 @@ static inline int rndInt(int low, int high) {
 
 
 
-//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
-    
- 
-//}
 
 
 -(void)didSimulatePhysics
@@ -357,7 +338,10 @@ static inline int rndInt(int low, int high) {
             if ([raindrops.name  isEqual: @"sentenceEnder"]){
                 [self removeAllActions];
                 [rain removeFromParent];
-                
+                isGameOver = YES;
+                [self movetoplace];
+                Sentence *sentence = [Sentence sharedSentence];
+                sentence.fullText = sentenceSoFar;
                 SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
                 SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
                 testNode.name= @"OpenTweet";
@@ -365,8 +349,10 @@ static inline int rndInt(int low, int high) {
                 hello.text= @"Tweet";
                 testNode.zRotation = M_PI/2;
                 testNode.position = CGPointMake(230,58);
+                testNode.size = CGSizeMake(100,100);
                 [testNode addChild:hello];
                 [self addChild: testNode];
+                
                 
                 SKSpriteNode *otherNode = [[SKSpriteNode alloc] init];//parent
                 SKLabelNode *hi = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
@@ -375,30 +361,9 @@ static inline int rndInt(int low, int high) {
                 hi.text= @"Again";
                 otherNode.zRotation = M_PI/2;
                 otherNode.position = CGPointMake(230,510);
+                otherNode.size = CGSizeMake(100,100);
                 [otherNode addChild:hi];
                 [self addChild: otherNode];
-
-                
-              //  hello.name= @"hero";
-              //  hello.fontSize = 18;
-              //  hello.text= @"Today";
-      //          UIButton *testButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 10, 100, 30)];
-       //         [testButton setTitle:@"AWESOME" forState:UIControlStateNormal];
-                
-              //  UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-              //  [button addTarget:self
-              //             action:@selector(sendToController)
-              //  forControlEvents:UIControlEventTouchDown];
-              //  [button setTitle:@"Show View" forState:UIControlStateNormal];
-              //  button.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-
-               // [self.view addSubview:button];  //the error coming form this line
-                
-  //              [viewController showTweetButton];
-                // [TweetField setText:@"???"];
-               // self.view
-                
-                
                 
             }
             
@@ -406,20 +371,36 @@ static inline int rndInt(int low, int high) {
         node.name = @"hero";
     }];
 }
-//- (void)showTweetButton
-//{
-//    NSLog(@"ok");
-//    SpriteViewController *viewController = [SpriteViewController alloc];
-//    [viewController showTweetButton];
-//}
 
-- (void)sendToController
+-(void)movetoplace
 {
-    NSLog(@"ok");
-    // use the already-created spriteViewController
-    [_spriteViewController showTweetButton];
+    CGFloat xlocation = 100;
+    
+    [self enumerateChildNodesWithName:@"abouttogetstuck" usingBlock:^(SKNode *node, BOOL *stop) {
+        node.userInteractionEnabled = NO;
+    }];
+    [self enumerateChildNodesWithName:@"hero" usingBlock:^(SKNode *node, BOOL *stop) {
+        node.userInteractionEnabled = NO;
+    }];
+    
+    [self enumerateChildNodesWithName:@"hero" usingBlock:^(SKNode *node, BOOL *stop) {
+        
+        SKAction *teleport = [SKAction sequence:@[
+                                                  [SKAction waitForDuration:0],
+                                                  [SKAction moveTo:CGPointMake(xlocation, node.position.y) duration:1]]];
+        [node runAction: [SKAction repeatAction: teleport count:(1)]];
+    }];
+    
+    [self enumerateChildNodesWithName:@"abouttogetstuck" usingBlock:^(SKNode *node, BOOL *stop) {
+        
+        SKAction *teleport = [SKAction sequence:@[
+                                                  [SKAction waitForDuration:0],
+                                                  [SKAction moveTo:CGPointMake(xlocation, node.position.y) duration:1]]];
+        [node runAction: [SKAction repeatAction: teleport count:(1)]];
+    }];
+
+
 
 }
-
 
 @end

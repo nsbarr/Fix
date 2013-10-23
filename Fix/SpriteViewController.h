@@ -11,17 +11,18 @@
 #import <Social/Social.h>
 
 
+
 @interface SpriteViewController : UIViewController
 
 
 {
     
     IBOutlet UIButton *twitterButton;
-    
+    NSString *sentencetext;
 
 }
 
-- (IBAction)openTweetSheet:(id)sender;
 - (void)showTweetButton;
+@property (nonatomic, retain) NSString *sentencetext;
 
 @end
