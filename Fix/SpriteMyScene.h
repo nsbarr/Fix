@@ -10,14 +10,11 @@
 
 @class SpriteViewController;
 
-@interface SpriteMyScene : SKScene {
+@interface SpriteMyScene : SKScene
     
-    SpriteViewController *aObj;
-
-}
 
 
-@property (nonatomic, weak) SpriteViewController *spriteViewController;
+@property (nonatomic, strong) SpriteViewController *spriteViewController;
 
 
 @end

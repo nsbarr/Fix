@@ -9,6 +9,7 @@
 #import "SpriteMyScene.h"
 #import "SpriteViewController.h"
 #import "Sentence.h"
+#import "WelcomeMenu.h"
 
 
 @interface SpriteMyScene () <SKPhysicsContactDelegate>
@@ -35,6 +36,8 @@ static const uint32_t heroCategory       =  0x1 << 1;
         /* Setup your scene here */
 isGameOver = NO;
 lengthofsentence = 1;
+        
+        
         
     }
     return self;
@@ -196,22 +199,30 @@ static inline int rndInt(int low, int high) {
     }
     
     NSArray *nodes = [self nodesAtPoint:[touch locationInNode:self]];
+    _spriteViewController = self.view.window.rootViewController;
+
     for (SKNode *node in nodes) {
         if ([node.name isEqualToString:@"OpenTweet"]) {
-            UIViewController *vc = self.view.window.rootViewController;
-//            SpriteViewController *viewController = [SpriteViewController alloc];
+//            UIViewController *vc = self.view.window.rootViewController;
 
             
-            
-            NSLog(@"Root controller is %@", vc);
+        
+      //      NSLog(@"Root controller is %@", vc);
+            NSLog(@"button was tapped");
+            if (!_spriteViewController){
+                NSLog(@"No sprite view controller, trying something");
+            }
             
             [_spriteViewController showTweetButton];
             
             
         }
         else if ([node.name isEqualToString:@"NewGame"]) {
-            SKScene *spaceshipScene  = [[SpriteMyScene alloc] initWithSize:self.size];
-            [self.view presentScene:spaceshipScene];
+            
+            SKScene *spaceshipScene  = [[WelcomeMenu alloc] initWithSize:self.size];
+            SKView * skView = (SKView *)_spriteViewController.view;
+            [skView presentScene:spaceshipScene];
+            
         }
     }
     
@@ -241,9 +252,16 @@ static inline int rndInt(int low, int high) {
             firstBody = contact.bodyB;
             secondBody = contact.bodyA;
         }
+        
         NSArray *arrayOfChildren = firstBody.node.children;
         SKNode *theNode = arrayOfChildren[0];
         NSString *wordToAppend = [theNode.name stringByAppendingString:@" "];
+        
+        if ([theNode.name isEqual:@"."]) {
+            
+        
+        }
+        
         sentenceSoFar = [sentenceSoFar stringByAppendingString:wordToAppend];
         NSLog(@"%@",sentenceSoFar);
         firstBody.node.physicsBody.categoryBitMask = heroCategory;
@@ -269,6 +287,27 @@ static inline int rndInt(int low, int high) {
     
 
 }
+
+- (void)addAsteroids
+{
+    SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
+    hello.name = @"asteroid";
+    hello.text = @";";
+    hello.fontSize = 8;
+    hello.alpha = 0.3;
+    hello.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
+    hello.physicsBody.dynamic = NO;
+    hello.physicsBody.collisionBitMask = 0;
+    hello.physicsBody.contactTestBitMask= 0;
+    SKAction *fall = [SKAction moveTo:CGPointMake(hello.position.x,-200) duration:1];
+    [hello runAction: fall];
+    [self addChild: hello];
+    
+    
+    
+}
+
+
 - (void)createSceneContents
 {
     [self addChild:[self hero]];
@@ -338,10 +377,12 @@ static inline int rndInt(int low, int high) {
             if ([raindrops.name  isEqual: @"sentenceEnder"]){
                 [self removeAllActions];
                 [rain removeFromParent];
-                isGameOver = YES;
+              //  isGameOver = YES;
                 [self movetoplace];
                 Sentence *sentence = [Sentence sharedSentence];
                 sentence.fullText = sentenceSoFar;
+                
+                
                 SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
                 SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
                 testNode.name= @"OpenTweet";
@@ -370,6 +411,12 @@ static inline int rndInt(int low, int high) {
         }];
         node.name = @"hero";
     }];
+    //SKAction *makeAsteroids = [SKAction sequence: @[
+    //                                           [SKAction performSelector:@selector(addAsteroids) onTarget:self],
+   //                                            [SKAction waitForDuration:.5 withRange:0.25]
+   //                                            ]];
+   // [self runAction: [SKAction repeatActionForever:makeAsteroids]];
+
 }
 
 -(void)movetoplace

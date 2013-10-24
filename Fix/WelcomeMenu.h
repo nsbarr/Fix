@@ -8,6 +8,11 @@
 
 #import <SpriteKit/SpriteKit.h>
 
+@class SpriteViewController;
+
 @interface WelcomeMenu : SKScene
+
+@property (nonatomic, weak) SpriteViewController *spriteViewController;
+
 
 @end

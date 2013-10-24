@@ -32,9 +32,10 @@
     
     
     // Create and configure the scene.
-    SKScene * scene = [WelcomeMenu sceneWithSize:skView.bounds.size];
+    WelcomeMenu * scene = [WelcomeMenu sceneWithSize:skView.bounds.size];
     SpriteMyScene * myScene = [SpriteMyScene sceneWithSize:skView.bounds.size];
     myScene.spriteViewController = self;
+  //  scene.spriteViewController = self;
     scene.scaleMode = SKSceneScaleModeAspectFill;
   //  [twitterButton setTitle:@"Foo" forState:UIControlStateNormal];
  //   [twitterButton setEnabled:NO];
@@ -44,7 +45,7 @@
 
     
     // Present the scene.
-    [skView presentScene:myScene];
+    [skView presentScene:scene];
 }
 
 - (BOOL)shouldAutorotate
