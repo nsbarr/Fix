@@ -8,6 +8,7 @@
 
 #import "WelcomeMenu.h"
 #import "SpriteMyScene.h"
+#import "AgainMenu.h"
 #import "SpriteViewController.h"
 
 @interface WelcomeMenu ()
@@ -36,7 +37,7 @@
     [self runAction: [SKAction repeatActionForever:makeWord]];
    // [self addChild: [self newHero]];
 
-    
+    [self addChild: [self skipButton]];
     [self addChild: [self sentenceOne]];
    // [self addChild: [self sentenceTwo]];
   //  [self addChild: [self sentenceThree]];
@@ -52,20 +53,16 @@
   
 }
 
--(SKSpriteNode *)newHero {
-    SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
+
+-(SKLabelNode *)skipButton {
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
-    testNode.name= @"todayNode";
-    hello.fontSize = 18;
-    hello.text= @"Today";
-    [testNode addChild:hello];
-    testNode.zRotation=0;
-    testNode.physicsBody = 0;
-    testNode.physicsBody.dynamic = NO;
-    hello.physicsBody.collisionBitMask = 0;
-    testNode.position = CGPointMake(CGRectGetMidX(self.frame),
-                                    CGRectGetMidY(self.frame));
-    return testNode;
+    hello.fontSize = 14;
+    hello.name = @"skipButton";
+    hello.text = @"Skip";
+    hello.position = CGPointMake(self.frame.size.width-40,
+                                 40);
+    return hello;
+    
 }
 
 
@@ -235,8 +232,11 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
 
 
     UITouch *touch = [touches anyObject];
+    NSArray *myChildren = [self children];
     
     NSArray *nodes = [self nodesAtPoint:[touch locationInNode:self]];
+    
+    
     for (SKNode *node in nodes) {
         if ([node.name isEqualToString:@"todayNode"])
         {
@@ -248,7 +248,17 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
                             SKScene *spaceshipScene  = [[SpriteMyScene alloc] initWithSize:self.size];
                             [self.view presentScene:spaceshipScene];
                         }];    }
-    else if ([node.name isEqualToString:@"sentenceOne"])
+        else if ([node.name isEqualToString:@"skipButton"])
+        {
+            SKScene *spaceshipScene  = [[AgainMenu alloc] initWithSize:self.size];
+            [self.view presentScene:spaceshipScene];
+        }
+    }
+    
+    for (SKNode *node in myChildren) {
+    
+        
+    if ([node.name isEqualToString:@"sentenceOne"])
     {
         SKAction *fadeOut = [SKAction fadeOutWithDuration:1];
         [node runAction: fadeOut completion:^{
@@ -355,12 +365,14 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     {
         SKAction *fadeOut = [SKAction fadeOutWithDuration:1];
         [node runAction: fadeOut completion:^{
-            [self addChild: [self newHero]];
             [node removeFromParent];
+            SKScene *spaceshipScene  = [[AgainMenu alloc] initWithSize:self.size];
+            [self.view presentScene:spaceshipScene];
+
         }];
         
     }
-
+  
 
     }
 }

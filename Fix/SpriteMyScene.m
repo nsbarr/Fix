@@ -10,7 +10,9 @@
 #import "SpriteViewController.h"
 #import "Sentence.h"
 #import "WelcomeMenu.h"
+#import "AgainMenu.h"
 #import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIKit.h>
 
 
 @interface SpriteMyScene () <SKPhysicsContactDelegate>
@@ -24,6 +26,8 @@ int lengthofsentence = 1; //how many words is the sentence? used to generate the
 NSString *sentenceSoFar = nil; //tracks the text of the sentence
 BOOL isGameOver = NO; //game is not over
 BOOL didIRun = NO;
+BOOL sentenceTooTall = NO;
+int wordFontSize = 14;
 
 //physics body masks
 static const uint32_t rainCategory       =  0x1 << 0;
@@ -39,6 +43,7 @@ static const uint32_t heroCategory       =  0x1 << 1;
 isGameOver = NO;
 didIRun = NO;
 lengthofsentence = 1;
+        sentenceTooTall = NO;
     }
     return self;
 }
@@ -61,7 +66,7 @@ lengthofsentence = 1;
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     testNode.name= @"hero";
-    hello.fontSize = 18;
+    hello.fontSize = wordFontSize;
     hello.text= @"Today ";
     [testNode addChild:hello];
     testNode.zRotation=M_PI/2;
@@ -71,7 +76,7 @@ lengthofsentence = 1;
     testNode.physicsBody.contactTestBitMask = rainCategory | heroCategory;
     testNode.physicsBody.collisionBitMask = 0;
     testNode.position = CGPointMake(CGRectGetMidX(self.frame),
-                                 hello.frame.size.width);
+                                 80);
     _sentenceheight = hello.frame.size.width/2;
     
     sentenceSoFar=hello.text;
@@ -106,8 +111,9 @@ static inline int rndInt(int low, int high) {
     NSArray *word2 = @[ @"broke", @"hurt", @"lost", @"ruined", @"tore", @".", @"missed" ];
     NSArray *word3 = @[ @"the", @"my", @"our", @"every", @"this", @".", @"?"];
     NSArray *word4 = @[ @"world", @"bed", @"mirror", @"heart", @"chance", @".", @"?"];
-    NSArray *word5 = @[ @"that", @".", @"!", @"?", @".", @"!", @"?"];
-    NSArray *arrayOfArrays = [[NSArray alloc] initWithObjects:word1, word2, word3, word4, word5, nil];
+    NSArray *word5 = @[ @"that", @".", @"when", @"?", @".", @"!", @"?"];
+    NSArray *word6 = @[ @".", @".", @"!", @"?", @".", @"!", @"?"];
+    NSArray *arrayOfArrays = [[NSArray alloc] initWithObjects:word1, word2, word3, word4, word5, word6, nil];
 
     if (lengthofsentence > 5){
         lengthofsentence = 1;
@@ -116,9 +122,15 @@ static inline int rndInt(int low, int high) {
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     [parentNode addChild: hello];
     
+    if (!sentenceTooTall){
     hello.text = [[arrayOfArrays objectAtIndex:lengthofsentence - 1] objectAtIndex:rndInt(0,6)];
+    }
+    else {
+        hello.text = [[arrayOfArrays objectAtIndex:5] objectAtIndex:rndInt(0,6)];
+    }
+        
     hello.name = hello.text;
-    hello.fontSize = 18;
+    hello.fontSize = wordFontSize;
 
     parentNode.name = @"rain";
     parentNode.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
@@ -210,7 +222,7 @@ static inline int rndInt(int low, int high) {
         }
         else if ([node.name isEqualToString:@"NewGame"]) {
             
-            SKScene *spaceshipScene  = [[WelcomeMenu alloc] initWithSize:self.size];
+            SKScene *spaceshipScene  = [[AgainMenu alloc] initWithSize:self.size];
             SKView * skView = (SKView *)_spriteViewController.view;
             [skView presentScene:spaceshipScene];
             
@@ -248,7 +260,7 @@ static inline int rndInt(int low, int high) {
     //SKNode *hero = [self childNodeWithName:@"hero"];
     SKNode *parentNode = firstBody.node;
     NSArray *arrayOfChildren = firstBody.node.children;
-    SKNode *labelNode = arrayOfChildren[0];
+    SKLabelNode *labelNode = arrayOfChildren[0];
     
     
     if (contact.contactPoint.y > _sentenceheight){
@@ -298,6 +310,37 @@ static inline int rndInt(int low, int high) {
                         [node runAction: mirror];
                     }
         }
+        
+        if ([labelNode.name  isEqual: @"heart"]){
+            UIColor *red = [UIColor redColor];
+            UIColor *white = [UIColor whiteColor];
+            SKAction *turnRed = [SKAction sequence: @[
+                                                      [SKAction scaleBy:.8 duration:.15],
+                                                      [SKAction scaleBy:1.75 duration:.3],
+                                                      [SKAction scaleBy:.714285714 duration:.5],
+                                                      [SKAction waitForDuration:0.15],
+                                                      
+
+                                                     // [SKAction scaleBy: -1.5 duration: 1],
+                                                      ]];
+            labelNode.fontColor = red;
+            [labelNode runAction: [SKAction repeatAction:turnRed count:3] completion:^{
+                labelNode.fontColor = white;
+            }];
+            
+            [self enumerateChildNodesWithName:@"hero" usingBlock:^(SKNode *node, BOOL *stop) {
+                SKLabelNode *theLabel = node.children[0];
+                theLabel.fontColor = red;
+                [theLabel runAction: [SKAction repeatAction:turnRed count:3] completion:^{
+                    labelNode.fontColor = white;
+                }];
+            }];
+             
+         
+            
+        }
+    
+    
     
         //if it's a ".", end the game.
         if ([labelNode.name isEqual:@"."] || [labelNode.name isEqual:@"?"] || [labelNode.name isEqual:@"!"] ) {
@@ -376,6 +419,10 @@ static inline int rndInt(int low, int high) {
         }
     }];
     
+    if (_sentenceheight > self.frame.size.height - 20){
+        isGameOver = YES;
+    }
+    
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -391,10 +438,11 @@ static inline int rndInt(int low, int high) {
         SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
         SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
         testNode.name= @"OpenTweet";
-        hello.fontSize = 18;
+        hello.fontSize = wordFontSize;
         hello.text= @"Tweet";
         testNode.zRotation = M_PI/2;
-        testNode.position = CGPointMake(230,58);
+            testNode.position = CGPointMake((self.frame.size.width - 40),
+                                                        60);
         testNode.size = CGSizeMake(100,100);
         [testNode addChild:hello];
         [self addChild: testNode];
@@ -403,10 +451,11 @@ static inline int rndInt(int low, int high) {
         SKSpriteNode *otherNode = [[SKSpriteNode alloc] init];//parent
         SKLabelNode *hi = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
         otherNode.name= @"NewGame";
-        hi.fontSize = 18;
+        hi.fontSize = wordFontSize;
         hi.text= @"Again";
         otherNode.zRotation = M_PI/2;
-        otherNode.position = CGPointMake(230,510);
+            otherNode.position = CGPointMake((self.frame.size.width - 40),
+                                             self.frame.size.height-60);
         otherNode.size = CGSizeMake(100,100);
         [otherNode addChild:hi];
         [self addChild: otherNode];
@@ -457,6 +506,7 @@ static inline int rndInt(int low, int high) {
     hello.alpha = 0.3;
     hello.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
     hello.physicsBody.dynamic = NO;
+    
 
     
     SKAction *fall = [SKAction moveTo:CGPointMake(hello.position.x,-20) duration:1];

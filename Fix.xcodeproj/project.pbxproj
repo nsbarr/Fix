@@ -24,6 +24,7 @@
 		7843E19417FE271000F4DC5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7843E19217FE271000F4DC5F /* InfoPlist.strings */; };
 		7843E19617FE271000F4DC5F /* FixTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E19517FE271000F4DC5F /* FixTests.m */; };
 		7891753018183B7D00E777B3 /* Sentence.m in Sources */ = {isa = PBXBuildFile; fileRef = 7891752F18183B7D00E777B3 /* Sentence.m */; };
+		78917533181C303A00E777B3 /* AgainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 78917532181C303A00E777B3 /* AgainMenu.m */; };
 		78CBEBCD1808A7A8006E7D4A /* WelcomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		7843E19517FE271000F4DC5F /* FixTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FixTests.m; sourceTree = "<group>"; };
 		7891752E18183B7D00E777B3 /* Sentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sentence.h; sourceTree = "<group>"; };
 		7891752F18183B7D00E777B3 /* Sentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sentence.m; sourceTree = "<group>"; };
+		78917531181C303A00E777B3 /* AgainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgainMenu.h; sourceTree = "<group>"; };
+		78917532181C303A00E777B3 /* AgainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgainMenu.m; sourceTree = "<group>"; };
 		78CBEBCB1808A7A8006E7D4A /* WelcomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeMenu.h; sourceTree = "<group>"; };
 		78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeMenu.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +128,7 @@
 		7843E16B17FE271000F4DC5F /* Fix */ = {
 			isa = PBXGroup;
 			children = (
+				78917534181C53E100E777B3 /* iPad */,
 				7843E17417FE271000F4DC5F /* SpriteAppDelegate.h */,
 				7843E17517FE271000F4DC5F /* SpriteAppDelegate.m */,
 				7843E17717FE271000F4DC5F /* Main.storyboard */,
@@ -136,6 +140,8 @@
 				7891752F18183B7D00E777B3 /* Sentence.m */,
 				78CBEBCB1808A7A8006E7D4A /* WelcomeMenu.h */,
 				78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */,
+				78917531181C303A00E777B3 /* AgainMenu.h */,
+				78917532181C303A00E777B3 /* AgainMenu.m */,
 				7843E18217FE271000F4DC5F /* Images.xcassets */,
 				7843E16C17FE271000F4DC5F /* Supporting Files */,
 			);
@@ -169,6 +175,13 @@
 				7843E19217FE271000F4DC5F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		78917534181C53E100E777B3 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +288,7 @@
 				7843E17F17FE271000F4DC5F /* SpriteMyScene.m in Sources */,
 				7843E17617FE271000F4DC5F /* SpriteAppDelegate.m in Sources */,
 				7843E17C17FE271000F4DC5F /* SpriteViewController.m in Sources */,
+				78917533181C303A00E777B3 /* AgainMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,8 +418,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fix/Fix-Prefix.pch";
 				INFOPLIST_FILE = "Fix/Fix-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = Today;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -418,8 +434,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fix/Fix-Prefix.pch";
 				INFOPLIST_FILE = "Fix/Fix-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = Today;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
