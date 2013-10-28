@@ -53,17 +53,21 @@
   
 }
 
-
--(SKLabelNode *)skipButton {
+-(SKSpriteNode *)skipButton {
+    
+    SKSpriteNode *parentNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     hello.fontSize = 14;
-    hello.name = @"skipButton";
+    parentNode.size = CGSizeMake(100,100);
+    parentNode.name = @"skipButton";
     hello.text = @"Skip";
     hello.position = CGPointMake(self.frame.size.width-40,
                                  40);
-    return hello;
-    
+    [parentNode addChild:hello];
+    return parentNode;
+
 }
+
 
 
 -(SKLabelNode *)sentenceOne {

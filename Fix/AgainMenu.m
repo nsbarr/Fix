@@ -8,6 +8,7 @@
 
 #import "AgainMenu.h"
 #import "SpriteMyScene.h"
+#import "EmiScene.h"
 
 @interface AgainMenu ()
 @property BOOL contentCreated;
@@ -29,6 +30,7 @@
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     testNode.name= @"todayNode";
+    testNode.size= CGSizeMake(150,150);
     hello.fontSize = 14;
     hello.text= @"Today";
     [testNode addChild:hello];
@@ -40,6 +42,24 @@
                                     CGRectGetMidY(self.frame));
     return testNode;
 }
+
+-(SKSpriteNode *)newEmi {
+    SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
+    SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
+    testNode.name= @"EmiNode";
+    testNode.size= CGSizeMake(150,150);
+    hello.fontSize = 14;
+    hello.text= @"Emi";
+    [testNode addChild:hello];
+    testNode.zRotation=0;
+    testNode.physicsBody = 0;
+    testNode.physicsBody.dynamic = NO;
+    hello.physicsBody.collisionBitMask = 0;
+    testNode.position = CGPointMake(self.frame.size.width-100,
+                                    self.frame.size.height-80);
+    return testNode;
+}
+
 
 
 - (void)touchesBegan:(NSSet *) touches withEvent:(UIEvent *)event
@@ -62,6 +82,19 @@
                 [self.view presentScene:spaceshipScene];
             }];
         }
+        else if ([node.name isEqualToString:@"emiNode"])
+        {
+            SKAction *moveintoplace = [SKAction sequence: @[
+                                                            [SKAction moveTo:CGPointMake(CGRectGetMidX(self.frame),
+                                                                                         80) duration:1],
+                                                            [SKAction rotateByAngle:M_PI/2 duration:2]
+                                                            ]];
+            [node runAction: moveintoplace completion:^{
+                SKScene *spaceshipScene  = [[EmiScene alloc] initWithSize:self.size];
+                [self.view presentScene:spaceshipScene];
+            }];
+        }
+
     }
 }
 
@@ -70,5 +103,7 @@
 {
     self.scaleMode = SKSceneScaleModeAspectFit;
     [self addChild:[self newHero]];
+    [self addChild:[self newEmi]];
+
 }
 @end
