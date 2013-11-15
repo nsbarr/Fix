@@ -27,8 +27,8 @@
     // Configure the view.
     SKView * skView = (SKView *)self.view;
     
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
+ //   skView.showsFPS = YES;
+ //   skView.showsNodeCount = YES;
     
     
     // Create and configure the scene.
@@ -101,17 +101,19 @@
     
     //  Set the initial body of the Tweet
     Sentence *sentence = [Sentence sharedSentence];
+    NSString *wordToAppend = [sentence.fullText stringByAppendingString:@"via @Poems.io"];
+    
 
-    [tweetSheet setInitialText:sentence.fullText];
+    [tweetSheet setInitialText:wordToAppend];
     
     //  Adds an image to the Tweet.  For demo purposes, assume we have an
     //  image named 'larry.png' that we wish to attach
-    if (![tweetSheet addImage:[UIImage imageNamed:@"larry.png"]]) {
-        NSLog(@"Unable to add the image!");
-    }
+  //  if (![tweetSheet addImage:[UIImage imageNamed:@"larry.png"]]) {
+  //      NSLog(@"Unable to add the image!");
+  //  }
     
     //  Add an URL to the Tweet.  You can add multiple URLs.
-    if (![tweetSheet addURL:[NSURL URLWithString:@"http://twitter.com/"]]){
+    if (![tweetSheet addURL:[NSURL URLWithString:@"http://poems.io/"]]){
         NSLog(@"Unable to add the URL!");
     }
     

@@ -6,38 +6,40 @@
 //  Copyright (c) 2013 Nicholas Barr. All rights reserved.
 //
 
+#import "EmiScene.h"
+
 
 #import "SpriteMyScene.h"
-#import "EmiScene.h"
 #import "SpriteViewController.h"
 #import "Sentence.h"
 #import "WelcomeMenu.h"
 #import "AgainMenu.h"
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioServices.h>
 
 
-@interface SpriteMyScene () <SKPhysicsContactDelegate>
+@interface EmiScene () <SKPhysicsContactDelegate>
+
 @property BOOL contentCreated;
 
 
 @end
 
-CGFloat _sentenceheight = 0.00f; //tracks height of sentence so we know whether to affix a word
-int lengthofsentence = 1; //how many words is the sentence? used to generate the right words
-NSString *sentenceSoFar = nil; //tracks the text of the sentence
-BOOL isGameOver = NO; //game is not over
-BOOL didIRun = NO;
-BOOL sentenceTooTall = NO;
-int wordFontSize = 14;
+static CGFloat _sentenceheight = 0.00f; //tracks height of sentence so we know whether to affix a word
+static int lengthofsentence = 1; //how many words is the sentence? used to generate the right words
+static NSString *sentenceSoFar = nil; //tracks the text of the sentence
+static BOOL isGameOver = NO; //game is not over
+static BOOL didIRun = NO;
+static BOOL sentenceTooTall = NO;
+static int wordFontSize = 14;
 
 //physics body masks
 static const uint32_t rainCategory       =  0x1 << 0;
 static const uint32_t heroCategory       =  0x1 << 1;
 
 
-@implementation SpriteMyScene
-
+@implementation EmiScene
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
@@ -78,7 +80,7 @@ static const uint32_t heroCategory       =  0x1 << 1;
     testNode.physicsBody.contactTestBitMask = rainCategory | heroCategory;
     testNode.physicsBody.collisionBitMask = 0;
     testNode.position = CGPointMake(CGRectGetMidX(self.frame),
-                                    80);
+                                    45);
     _sentenceheight = hello.frame.size.width/2;
     
     sentenceSoFar=hello.text;
@@ -109,15 +111,17 @@ static inline int rndInt(int low, int high) {
 - (void)addWord
 {
     
-    NSArray *word1 = @[ @"I", @"you", @"he", @"she", @"we", @"someone", @"they" ];
-    NSArray *word2 = @[ @"broke", @"hurt", @"lost", @"ruined", @"tore", @".", @"missed" ];
-    NSArray *word3 = @[ @"the", @"my", @"our", @"every", @"this", @".", @"?"];
-    NSArray *word4 = @[ @"world", @"bed", @"mirror", @"heart", @"chance", @".", @"?"];
-    NSArray *word5 = @[ @"that", @".", @"when", @"?", @".", @"!", @"?"];
-    NSArray *word6 = @[ @".", @".", @"!", @"?", @".", @"!", @"?"];
-    NSArray *arrayOfArrays = [[NSArray alloc] initWithObjects:word1, word2, word3, word4, word5, word6, nil];
+    NSArray *word1 = @[ @"have", @"have", @"enjoy", @"have", @"have", @"enjoy", @"have" ];
+    NSArray *word2 = @[ @"an amazeballs", @"a wonderful", @"an awesome", @"the best", @"an amazeballs", @"an amazeballs", @"the best" ];
+    NSArray *word3 = @[ @"birthday", @"birthday", @"birthday", @"birthday", @"birthday", @"birthday", @"birthday"];
+    NSArray *word4 = @[ @"I", @"I", @"I", @"I", @"I", @"I", @"I"];
+    NSArray *word5 = @[ @"love", @"love", @"love", @"love", @"love", @"love", @"love"];
+    NSArray *word6 = @[ @"you", @"you", @"your boobs", @"your girl", @"your girl", @"your boobs", @"you"];
+    NSArray *word7 = @[ @"so much", @"more than you know", @"a lot", @"the most", @"so much", @"a lot", @"the most"];
+    NSArray *word8 = @[ @"!", @"!", @"!", @"!", @"!", @"!", @"!"];
+    NSArray *arrayOfArrays = [[NSArray alloc] initWithObjects:word1, word2, word3, word4, word5, word6, word7, word8, nil];
     
-    if (lengthofsentence > 5){
+    if (lengthofsentence > 9){
         lengthofsentence = 1;
     }
     SKSpriteNode *parentNode = [[SKSpriteNode alloc] init];
@@ -213,14 +217,21 @@ static inline int rndInt(int low, int high) {
     
     for (SKNode *node in nodes) {
         if ([node.name isEqualToString:@"OpenTweet"]) {
-            NSLog(@"button was tapped");
-            if (!_spriteViewController){
-                NSLog(@"No sprite view controller :(");
-            }
-            
-            [_spriteViewController showTweetButton];
-            
-            
+            SKSpriteNode *backpack = [SKSpriteNode spriteNodeWithImageNamed:@"backpack.jpeg"];
+            backpack.position = CGPointMake(self.frame.size.width/2,self.frame.size.height/2);
+            [self addChild:backpack];
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+            SKAction *mirror = [SKAction sequence: @[
+                                                     [SKAction waitForDuration:.2 withRange:0.25],
+                                                     [SKAction rotateToAngle:1080 duration:2],
+                                                     [SKAction scaleTo:2 duration:1],
+                                                     [SKAction rotateToAngle:1080 duration:2],
+                                                     [SKAction scaleTo: .5 duration:1],
+                                                     ]];
+
+            [backpack runAction:mirror completion:^{
+                [backpack removeFromParent];
+            }];
         }
         else if ([node.name isEqualToString:@"NewGame"]) {
             
@@ -313,7 +324,7 @@ static inline int rndInt(int low, int high) {
             }
         }
         
-        if ([labelNode.name  isEqual: @"heart"]){
+        if ([labelNode.name  isEqual: @"love"]){
             UIColor *red = [UIColor redColor];
             UIColor *white = [UIColor whiteColor];
             SKAction *turnRed = [SKAction sequence: @[
@@ -334,7 +345,7 @@ static inline int rndInt(int low, int high) {
                 SKLabelNode *theLabel = node.children[0];
                 theLabel.fontColor = red;
                 [theLabel runAction: [SKAction repeatAction:turnRed count:3] completion:^{
-                    labelNode.fontColor = white;
+                    theLabel.fontColor = white;
                 }];
             }];
             
@@ -441,10 +452,10 @@ static inline int rndInt(int low, int high) {
             SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
             testNode.name= @"OpenTweet";
             hello.fontSize = wordFontSize;
-            hello.text= @"Tweet";
+            hello.text= @"Congrats! Tap to unlock your present.";
             testNode.zRotation = M_PI/2;
             testNode.position = CGPointMake((self.frame.size.width - 40),
-                                            60);
+                                            160);
             testNode.size = CGSizeMake(100,100);
             [testNode addChild:hello];
             [self addChild: testNode];
@@ -501,17 +512,38 @@ static inline int rndInt(int low, int high) {
 
 - (void)addRoids
 {
+    int rando = rndInt(0,3);
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     hello.name = @"roids";
     hello.text = @";";
-    hello.fontSize = 8;
-    hello.alpha = 0.3;
-    hello.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
+    SKAction *fall = nil;
+    
+    if (rando == 0){
+        hello.fontSize = 8;
+        hello.alpha = 0.4;
+        hello.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
+        
+        fall = [SKAction moveTo:CGPointMake(hello.position.x,-20) duration:3];
+    }
+    else if(rando == 1){
+        hello.fontSize = 10;
+        hello.alpha = 0.5;
+        hello.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
+        
+        fall = [SKAction moveTo:CGPointMake(hello.position.x,-20) duration:2];
+    }
+    else {
+        hello.fontSize = 12;
+        hello.alpha = 0.7;
+        hello.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
+        
+        fall = [SKAction moveTo:CGPointMake(hello.position.x,-20) duration:1];
+    }
     hello.physicsBody.dynamic = NO;
     
     
     
-    SKAction *fall = [SKAction moveTo:CGPointMake(hello.position.x,-20) duration:1];
+    //  SKAction *fall = [SKAction moveTo:CGPointMake(hello.position.x,-20) duration:1];
     
     [hello runAction: fall];
     
@@ -520,5 +552,6 @@ static inline int rndInt(int low, int high) {
     
     
 }
+
 
 @end

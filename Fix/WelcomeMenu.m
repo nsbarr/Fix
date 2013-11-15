@@ -30,11 +30,11 @@
 - (void)createSceneContents
 {
     self.scaleMode = SKSceneScaleModeAspectFit;
-    SKAction *makeWord = [SKAction sequence: @[
-                                               [SKAction performSelector:@selector(addWord) onTarget:self],
-                                               [SKAction waitForDuration:0 withRange:0.25]
-                                               ]];
-    [self runAction: [SKAction repeatActionForever:makeWord]];
+  //  SKAction *makeWord = [SKAction sequence: @[
+   //                                            [SKAction performSelector:@selector(addWord) onTarget:self],
+   //                                            [SKAction waitForDuration:0 withRange:0.25]
+    //                                           ]];
+  //  [self runAction: [SKAction repeatActionForever:makeWord]];
    // [self addChild: [self newHero]];
 
     [self addChild: [self skipButton]];
@@ -58,7 +58,7 @@
     SKSpriteNode *parentNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     hello.fontSize = 14;
-    parentNode.size = CGSizeMake(100,100);
+    parentNode.size = CGSizeMake(200,200);
     parentNode.name = @"skipButton";
     hello.text = @"Skip";
     hello.position = CGPointMake(self.frame.size.width-40,
