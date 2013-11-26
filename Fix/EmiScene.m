@@ -33,6 +33,8 @@ static BOOL isGameOver = NO; //game is not over
 static BOOL didIRun = NO;
 static BOOL sentenceTooTall = NO;
 static int wordFontSize = 14;
+static NSString *previousWord = nil;
+static NSString *theCorpus = @"As a statue, planted on a revolving pedestal, shows now this limb, now that; now front, now back, now side; continually changing, too, its general profile; so does the pivoted, statued soul of man, when turned by the hand of Truth. Lies only never vary; look for no invariableness in Pierre. Nor does any canting showman here stand by to announce his phases as he revolves. Catch his phases as your insight may. Another day passed on; Glen and Frederic still absenting themselves, and Pierre and Isabel and Lucy all dwelling together. The domestic presence of Lucy had begun to produce a remarkable effect upon Pierre. Sometimes, to the covertly watchful eye of Isabel, he would seem to look upon Lucy with an expression illy befitting their singular and so-supposed merely cousinly relation; and yet again, with another expression still more unaccountable to her,--one of fear and awe, not unmixed with impatience. But his general detailed manner toward Lucy was that of the most delicate and affectionate considerateness--nothing more. He was never alone with her; though, as before, at times alone with Isabel. Lucy seemed entirely undesirous of usurping any place about him; manifested no slightest unwelcome curiosity as to Pierre, and no painful embarrassment as to Isabel. Nevertheless, more and more did she seem, hour by hour, to be somehow inexplicably sliding between them, without touching them. Pierre felt that some strange heavenly influence was near him, to keep him from some uttermost harm; Isabel was alive to some untraceable displacing agency. Though when all three were together, the marvelous serenity, and sweetness, and utter unsuspectingness of Lucy obviated any thing like a common embarrassment: yet if there was any embarrassment at all beneath that roof, it was sometimes when Pierre was alone with Isabel, after Lucy would innocently quit them. Meantime Pierre was still going on with his book; every moment becoming still the more sensible of the intensely inauspicious circumstances of all sorts under which that labor was proceeding. And as the now advancing and concentring enterprise demanded more and more compacted vigor from him, he felt that he was having less and less to bring to it. For not only was it the signal misery of Pierre, to be invisibly--though but accidentally--goaded, in the hour of mental immaturity, to the attempt at a mature work,--a circumstance sufficiently lamentable in itself; but also, in the hour of his clamorous pennilessness, he was additionally goaded into an enterprise long and protracted in the execution, and of all things least calculated for pecuniary profit in the end. How these things were so, whence they originated, might be thoroughly and very beneficially explained; but space and time here forbid. At length, domestic matters--rent and bread--had come to such a pass with him, that whether or no, the first pages must go to the printer; and thus was added still another tribulation; because the printed pages now dictated to the following manuscript, and said to all subsequent thoughts and inventions of Pierre--_Thus and thus_; _so and so_; _else an ill match_. Therefore, was his book already limited, bound over, and committed to imperfection, even before it had come to any confirmed form or conclusion at all. Oh, who shall reveal the horrors of poverty in authorship that is high? While the silly Millthorpe was railing against his delay of a few weeks and months; how bitterly did unreplying Pierre feel in his heart, that to most of the great works of humanity, their authors had given, not weeks and months, not years and years, but their wholly surrendered and dedicated lives. On either hand clung to by a girl who would have laid down her life for him; Pierre, nevertheless, in his deepest, highest part, was utterly without sympathy from any thing divine, human, brute, or vegetable. One in a city of hundreds of thousands of human beings, Pierre was solitary as at the Pole. And the great woe of all was this: that all these things were unsuspected without, and undivulgible from within; the very daggers that stabbed him were joked at by Imbecility, Ignorance, Blockheadedness, Self-Complacency, and the universal Blearedness and Besottedness around him. Now he began to feel that in him, the thews of a Titan were forestallingly cut by the scissors of Fate. He felt as a moose, hamstrung. All things that think, or move, or lie still, seemed as created to mock and torment him. He seemed gifted with loftiness, merely that it might be dragged down to the mud. Still, the profound willfulness in him would not give up. Against the breaking heart, and the bursting head; against all the dismal lassitude, and deathful faintness and sleeplessness, and whirlingness, and craziness, still he like a demigod bore up. His soul's ship foresaw the inevitable rocks, but resolved to sail on, and make a courageous wreck. Now he gave jeer for jeer, and taunted the apes that jibed him. With the soul of an Atheist, he wrote down the godliest things; with the feeling of misery and death in him, he created forms of gladness and life. For the pangs in his heart, he put down hoots on the paper. And every thing else he disguised under the so conveniently adjustable drapery of all-stretchable Philosophy. For the more and the more that he wrote, and the deeper and the deeper that he dived, Pierre saw the everlasting elusiveness of Truth; the universal lurking insincerity of even the greatest and purest written thoughts. Like knavish cards, the leaves of all great books were covertly packed. He was but packing one set the more; and that a very poor jaded set and pack indeed. So that there was nothing he more spurned, than his own aspirations; nothing he more abhorred than the loftiest part of himself. The brightest success, now seemed intolerable to him, since he so plainly saw, that the brightest success could not be the sole offspring of Merit; but of Merit for the one thousandth part, and nine hundred and ninety-nine combining and dove-tailing accidents for the rest. So beforehand he despised those laurels which in the very nature of things, can never be impartially bestowed. But while thus all the earth was depopulated of ambition for him; still circumstances had put him in the attitude of an eager contender for renown. So beforehand he felt the unrevealable sting of receiving either plaudits or censures, equally unsought for, and equally loathed ere given. So, beforehand he felt the pyramidical scorn of the genuine loftiness for the whole infinite company of infinitesimal critics. His was the scorn which thinks it not worth the while to be scornful. Those he most scorned, never knew it. In that lonely little closet of his, Pierre foretasted all that this world hath either of praise or dispraise; and thus foretasting both goblets, anticipatingly hurled them both in its teeth. All panegyric, all denunciation, all criticism of any sort, would come too late for Pierre. But man does never give himself up thus, a doorless and shutterless house for the four loosened winds of heaven to howl through, without still additional dilapidations. Much oftener than before, Pierre laid back in his chair with the deadly feeling of faintness. Much oftener than before, came staggering home from his evening walk, and from sheer bodily exhaustion economized the breath that answered the anxious inquiries as to what might be done for him. And as if all the leagued spiritual inveteracies and malices, combined with his general bodily exhaustion, were not enough, a special corporeal affliction now descended like a sky-hawk upon him. His incessant application told upon his eyes. They became so affected, that some days he wrote with the lids nearly closed, fearful of opening them wide to the light. Through the lashes he peered upon the paper, which so seemed fretted with wires. Sometimes he blindly wrote with his eyes turned away from the paper;--thus unconsciously symbolizing the hostile necessity and distaste, the former whereof made of him this most unwilling states-prisoner of letters. As every evening, after his day's writing was done, the proofs of the beginning of his work came home for correction, Isabel would read them to him. They were replete with errors; but preoccupied by the thronging, and undiluted, pure imaginings of things, he became impatient of such minute, gnat-like torments; he randomly corrected the worst, and let the rest go; jeering with himself at the rich harvest thus furnished to the entomological critics. But at last he received a tremendous interior intimation, to hold off--to be still from his unnatural struggle. In the earlier progress of his book, he had found some relief in making his regular evening walk through the greatest thoroughfare of the city; that so, the utter isolation of his soul, might feel itself the more intensely from the incessant jogglings of his body against the bodies of the hurrying thousands. Then he began to be sensible of more fancying stormy nights, than pleasant ones; for then, the great thoroughfares were less thronged, and the innumerable shop-awnings flapped and beat like schooners' broad sails in a gale, and the shutters banged like lashed bulwarks; and the slates fell hurtling like displaced ship's blocks from aloft. Stemming such tempests through the deserted streets, Pierre felt a dark, triumphant joy; that while others had crawled in fear to their kennels, he alone defied the storm-admiral, whose most vindictive peltings of hail-stones,--striking his iron-framed fiery furnace of a body,--melted into soft dew, and so, harmlessly trickled from off him. By-and-by, of such howling, pelting nights, he began to bend his steps down the dark, narrow side-streets, in quest of the more secluded and mysterious tap-rooms. There he would feel a singular satisfaction, in sitting down all dripping in a chair, ordering his half-pint of ale before him, and drawing over his cap to protect his eyes from the light, eye the varied faces of the social castaways, who here had their haunts from the bitterest midnights. But at last he began to feel a distaste for even these; and now nothing but the utter night-desolation of the obscurest warehousing lanes would content him, or be at all sufferable to him. Among these he had now been accustomed to wind in and out every evening; till one night as he paused a moment previous to turning about for home, a sudden, unwonted, and all-pervading sensation seized him. He knew not where he was; he did not have any ordinary life-feeling at all. He could not see; though instinctively putting his hand to his eyes, he seemed to feel that the lids were open. Then he was sensible of a combined blindness, and vertigo, and staggering; before his eyes a million green meteors danced; he felt his foot tottering upon the curb, he put out his hands, and knew no more for the time. When he came to himself he found that he was lying crosswise in the gutter, dabbled with mud and slime. He raised himself to try if he could stand; but the fit was entirely gone. Immediately he quickened his steps homeward, forbearing to rest or pause at all on the way, lest that rush of blood to his head, consequent upon his sudden cessation from walking, should again smite him down. This circumstance warned him away from those desolate streets, lest the repetition of the fit should leave him there to perish by night in unknown and unsuspected loneliness. But if that terrible vertigo had been also intended for another and deeper warning, he regarded such added warning not at all; but again plied heart and brain as before. But now at last since the very blood in his body had in vain rebelled against his Titanic soul; now the only visible outward symbols of that soul--his eyes--did also turn downright traitors to him, and with more success than the rebellious blood. He had abused them so recklessly, that now they absolutely refused to look on paper. He turned them on paper, and they blinked and shut. The pupils of his eyes rolled away from him in their own orbits. He put his hand up to them, and sat back in his seat. Then, without saying one word, he continued there for his usual term, suspended, motionless, blank. But next morning--it was some few days after the arrival of Lucy--still feeling that a certain downright infatuation, and no less, is both unavoidable and indispensable in the composition of any great, deep book, or even any wholly unsuccessful attempt at any great, deep book; next morning he returned to the charge. But again the pupils of his eyes rolled away from him in their orbits: and now a general and nameless torpor--some horrible foretaste of death itself--seemed stealing upon him.";
 
 //physics body masks
 static const uint32_t rainCategory       =  0x1 << 0;
@@ -48,6 +50,7 @@ static const uint32_t heroCategory       =  0x1 << 1;
         didIRun = NO;
         lengthofsentence = 1;
         sentenceTooTall = NO;
+        //[self generateWord];
     }
     return self;
 }
@@ -62,16 +65,24 @@ static const uint32_t heroCategory       =  0x1 << 1;
     }
     self.physicsWorld.gravity = CGVectorMake(0.0,0.0);
     self.physicsWorld.contactDelegate = self;
+    UIColor *deep = [UIColor colorWithRed:3.0/255 green:5.0/255 blue:13.0/255 alpha:1];
+    self.backgroundColor = deep;
 }
 
 
 -(SKSpriteNode *)hero {
     
+    NSArray *sourceText = [theCorpus componentsSeparatedByString:@" "];
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     testNode.name= @"hero";
     hello.fontSize = wordFontSize;
-    hello.text= @"Emi ";
+    NSUInteger randomSourceIndex = arc4random() % [sourceText count];
+    previousWord = [sourceText objectAtIndex:randomSourceIndex];
+    hello.text = [previousWord.capitalizedString stringByAppendingString:@" "];
+  //  hello.text = @"Today";
+  //  previousWord = hello.text;
+  //  hello.text = [hello.text.capitalizedString stringByAppendingString:@" "];
     [testNode addChild:hello];
     testNode.zRotation=M_PI/2;
     testNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:hello.frame.size];
@@ -102,38 +113,55 @@ static inline CGFloat rndValue(CGFloat low, CGFloat high) {
     return skRandf() * (high - low) + low;
 }
 
-static inline int rndInt(int low, int high) {
+static inline NSUInteger rndInt(NSUInteger low, NSUInteger high) {
     return skRandf() * (high - low) + low;
 }
 
 
 
+
 - (void)addWord
 {
+
+
+    NSString *separators = @",!./;?-";
+    NSCharacterSet *setOfseparators = [NSCharacterSet characterSetWithCharactersInString:separators];
     
-    NSArray *word1 = @[ @"have", @"have", @"enjoy", @"have", @"have", @"enjoy", @"have" ];
-    NSArray *word2 = @[ @"an amazeballs", @"a wonderful", @"an awesome", @"the best", @"an amazeballs", @"an amazeballs", @"the best" ];
-    NSArray *word3 = @[ @"birthday", @"birthday", @"birthday", @"birthday", @"birthday", @"birthday", @"birthday"];
-    NSArray *word4 = @[ @"I", @"I", @"I", @"I", @"I", @"I", @"I"];
-    NSArray *word5 = @[ @"love", @"love", @"love", @"love", @"love", @"love", @"love"];
-    NSArray *word6 = @[ @"you", @"you", @"your boobs", @"your girl", @"your girl", @"your boobs", @"you"];
-    NSArray *word7 = @[ @"so much", @"more than you know", @"a lot", @"the most", @"so much", @"a lot", @"the most"];
-    NSArray *word8 = @[ @"!", @"!", @"!", @"!", @"!", @"!", @"!"];
-    NSArray *arrayOfArrays = [[NSArray alloc] initWithObjects:word1, word2, word3, word4, word5, word6, word7, word8, nil];
+    NSArray *sourceText = [theCorpus componentsSeparatedByString:@" "];
+
+
     
-    if (lengthofsentence > 9){
-        lengthofsentence = 1;
+ //   NSArray *sourceText = @[@"this",@"must",@"be",@"a",@"text",@"this",@"is",@"a",@"joke",@"this",@"is",@"always",@"joke"];
+    if (previousWord == nil){
+   // NSUInteger randomSourceIndex = arc4random() % [sourceText count];
+    //previousWord = [sourceText objectAtIndex:randomSourceIndex];
+        NSLog(@"loadedtooearly");
     }
+    NSLog(@"the previous word is %@", previousWord);
+    NSMutableArray *possibleWords = [[NSMutableArray alloc]init];
+    int i;
+    for (i = 0; i < [sourceText count]; i++) {
+
+        NSInteger indexOfTheNextWordCandidate = i+1;
+        //NSString *nextWordCandidate = nil;
+        NSString *string = [sourceText objectAtIndex:i];
+        if ([string isEqualToString:previousWord])
+        {
+            NSString *nextWordCandidate = sourceText[indexOfTheNextWordCandidate];
+            [possibleWords addObject:nextWordCandidate];
+        }
+
+
+    }
+    NSUInteger randomIndex = arc4random() % [possibleWords count];
+    NSString *nextWord = [possibleWords objectAtIndex:randomIndex];
+    
     SKSpriteNode *parentNode = [[SKSpriteNode alloc] init];
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
+    hello.text = nextWord;
+
     [parentNode addChild: hello];
-    
-    if (!sentenceTooTall){
-        hello.text = [[arrayOfArrays objectAtIndex:lengthofsentence - 1] objectAtIndex:rndInt(0,6)];
-    }
-    else {
-        hello.text = [[arrayOfArrays objectAtIndex:5] objectAtIndex:rndInt(0,6)];
-    }
+
     
     hello.name = hello.text;
     hello.fontSize = wordFontSize;
@@ -217,21 +245,14 @@ static inline int rndInt(int low, int high) {
     
     for (SKNode *node in nodes) {
         if ([node.name isEqualToString:@"OpenTweet"]) {
-            SKSpriteNode *backpack = [SKSpriteNode spriteNodeWithImageNamed:@"backpack.jpeg"];
-            backpack.position = CGPointMake(self.frame.size.width/2,self.frame.size.height/2);
-            [self addChild:backpack];
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-            SKAction *mirror = [SKAction sequence: @[
-                                                     [SKAction waitForDuration:.2 withRange:0.25],
-                                                     [SKAction rotateToAngle:1080 duration:2],
-                                                     [SKAction scaleTo:2 duration:1],
-                                                     [SKAction rotateToAngle:1080 duration:2],
-                                                     [SKAction scaleTo: .5 duration:1],
-                                                     ]];
-
-            [backpack runAction:mirror completion:^{
-                [backpack removeFromParent];
-            }];
+            NSLog(@"button was tapped");
+            if (!_spriteViewController){
+                NSLog(@"No sprite view controller :(");
+            }
+            
+            [_spriteViewController showTweetButton];
+            
+            
         }
         else if ([node.name isEqualToString:@"NewGame"]) {
             
@@ -308,7 +329,7 @@ static inline int rndInt(int low, int high) {
         
         
         
-        
+        previousWord = labelNode.name;
         
         //now look at what kind of item it is. If it's a mirror, then invert the words.
         if ([labelNode.name  isEqual: @"mirror"]){
@@ -355,10 +376,17 @@ static inline int rndInt(int low, int high) {
         
         
         
-        //if it's a ".", end the game.
+        //if it has a ".", end the game.
         if ([labelNode.name isEqual:@"."] || [labelNode.name isEqual:@"?"] || [labelNode.name isEqual:@"!"] ) {
             isGameOver = YES;
             
+        }
+        
+        if ([labelNode.name rangeOfString:@"."].location == NSNotFound){
+    isGameOver = NO;
+        }
+        else {
+            isGameOver = YES;
         }
         lengthofsentence = lengthofsentence + 1;
         
@@ -452,10 +480,10 @@ static inline int rndInt(int low, int high) {
             SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
             testNode.name= @"OpenTweet";
             hello.fontSize = wordFontSize;
-            hello.text= @"Congrats! Tap to unlock your present.";
+            hello.text= @"Tweet";
             testNode.zRotation = M_PI/2;
             testNode.position = CGPointMake((self.frame.size.width - 40),
-                                            160);
+                                            60);
             testNode.size = CGSizeMake(100,100);
             [testNode addChild:hello];
             [self addChild: testNode];
@@ -512,7 +540,7 @@ static inline int rndInt(int low, int high) {
 
 - (void)addRoids
 {
-    int rando = rndInt(0,3);
+    NSUInteger rando = rndInt(0,3);
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     hello.name = @"roids";
     hello.text = @";";

@@ -10,11 +10,19 @@
 
 @interface Sentence : NSObject {
     NSString *fullText;
+    NSString *gameLevel;
     
 }
 
 @property (nonatomic, retain) NSString *fullText;
+@property (nonatomic, retain) NSString *gameLevel;
 
 + (Sentence *)sharedSentence;
 
 @end
+
+
+
+
+//Sentence *sentence = [Sentence sharedSentence];
+//sentence.fullText = sentenceSoFar;

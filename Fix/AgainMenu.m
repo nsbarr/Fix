@@ -10,11 +10,16 @@
 #import "SpriteMyScene.h"
 #import "EmiScene.h"
 #import "PiScene.h"
+#import "Sentence.h"
+#import "YesterdayScene.h"
+#import "TomorrowScene.h"
 
 @interface AgainMenu ()
 @property BOOL contentCreated;
 @end
 @implementation AgainMenu
+
+BOOL tomorrowLocked = YES;
 
 
 - (void)didMoveToView: (SKView *) view
@@ -31,11 +36,13 @@
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     testNode.name= @"todayNode";
-    testNode.size= CGSizeMake(100,100);
-    hello.fontSize = 14;
+    testNode.size= CGSizeMake(self.size.width,self.size.height/5);
+    hello.fontSize = 18;
     hello.text= @"Today";
     [testNode addChild:hello];
-    testNode.zRotation=0;
+    UIColor *mid = [UIColor colorWithRed:16.0/255 green:23.0/255 blue:32.0/255 alpha:1];
+    testNode.color = mid;
+    testNode.zRotation= 0;
     testNode.physicsBody = 0;
     testNode.physicsBody.dynamic = NO;
     hello.physicsBody.collisionBitMask = 0;
@@ -47,38 +54,50 @@
 -(SKSpriteNode *)newYesterday {
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
-    testNode.name= @"todayNode";
-    testNode.size= CGSizeMake(100,100);
-    hello.fontSize = 14;
+    testNode.name= @"yesterdayNode";
+    testNode.size= CGSizeMake(self.size.width,self.size.height/5);
+    UIColor *deep = [UIColor colorWithRed:21.0/255 green:28.0/255 blue:37.0/255 alpha:1];
+    testNode.color = deep;
+    hello.fontSize = 18;
     hello.text= @"Yesterday";
-    UIColor *gray = [UIColor grayColor];
-    hello.fontColor = gray;
+   // UIColor *gray = [UIColor grayColor];
+   // hello.fontColor = gray;
     [testNode addChild:hello];
-    testNode.zRotation=0;
+    testNode.zRotation = 0;
     testNode.physicsBody = 0;
     testNode.physicsBody.dynamic = NO;
     hello.physicsBody.collisionBitMask = 0;
     testNode.position = CGPointMake(CGRectGetMidX(self.frame),
-                                    CGRectGetMidY(self.frame)+100);
+                                    CGRectGetMidY(self.frame)+self.size.height/5);
     return testNode;
 }
+
 
 -(SKSpriteNode *)newTomorrow {
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     testNode.name= @"Tomorrow";
-    testNode.size= CGSizeMake(100,100);
-    hello.fontSize = 14;
+    testNode.size= CGSizeMake(self.size.width,self.size.height/5);
+    hello.fontSize = 18;
     hello.text= @"Tomorrow";
-    UIColor *gray = [UIColor grayColor];
-    hello.fontColor = gray;
+    UIColor *deep = [UIColor colorWithRed:11.0/255 green:17.0/255 blue:26.0/255 alpha:1];
+    testNode.color = deep;
+    Sentence *sentence = [Sentence sharedSentence];
+    if ([sentence.gameLevel isEqualToString:@"foobie"]){
+        UIColor *white = [UIColor whiteColor];
+        hello.fontColor = white;
+    }
+    else{
+   // UIColor *gray = [UIColor grayColor];
+   // hello.fontColor = gray;
+    }
     [testNode addChild:hello];
     testNode.zRotation=0;
     testNode.physicsBody = 0;
     testNode.physicsBody.dynamic = NO;
     hello.physicsBody.collisionBitMask = 0;
     testNode.position = CGPointMake(CGRectGetMidX(self.frame),
-                                    CGRectGetMidY(self.frame)-100);
+                                    CGRectGetMidY(self.frame)-self.size.height/5);
     return testNode;
 }
 
@@ -86,16 +105,18 @@
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     testNode.name= @"piNode";
-    testNode.size= CGSizeMake(100,100);
-    hello.fontSize = 14;
-    hello.text= @"3.";
+    testNode.size= CGSizeMake(self.size.width,self.size.height/5);
+    hello.fontSize = 18;
+    hello.text= @"π";
     [testNode addChild:hello];
+    UIColor *deep = [UIColor colorWithRed:33.0/255 green:43.0/255 blue:53.0/255 alpha:1];
+    testNode.color = deep;
     testNode.zRotation=0;
     testNode.physicsBody = 0;
     testNode.physicsBody.dynamic = NO;
     hello.physicsBody.collisionBitMask = 0;
-    testNode.position = CGPointMake(100,
-                                    100);
+    testNode.position = CGPointMake(CGRectGetMidX(self.frame),
+                                    CGRectGetMidY(self.frame)+2*self.size.height/5);
     return testNode;
 }
 
@@ -103,16 +124,18 @@
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     testNode.name= @"emiNode";
-    testNode.size= CGSizeMake(100,100);
-    hello.fontSize = 14;
-    hello.text= @"Emi";
+    testNode.size= CGSizeMake(self.size.width,self.size.height/5);
+    hello.fontSize = 18;
+    hello.text= @"∞";
     [testNode addChild:hello];
+    UIColor *deep = [UIColor colorWithRed:3.0/255 green:5.0/255 blue:13.0/255 alpha:1];
+    testNode.color = deep;
     testNode.zRotation=0;
     testNode.physicsBody = 0;
     testNode.physicsBody.dynamic = NO;
     hello.physicsBody.collisionBitMask = 0;
-    testNode.position = CGPointMake(self.frame.size.width-100,
-                                    self.frame.size.height-80);
+    testNode.position = CGPointMake(CGRectGetMidX(self.frame),
+                                    CGRectGetMidY(self.frame)-2*self.size.height/5);
     return testNode;
 }
 
@@ -125,12 +148,15 @@
     UITouch *touch = [touches anyObject];
     
     NSArray *nodes = [self nodesAtPoint:[touch locationInNode:self]];
-    for (SKNode *node in nodes) {
+    for (SKSpriteNode *node in nodes) {
         if ([node.name isEqualToString:@"todayNode"])
         {
+            node.zPosition = 1000;
+            node.size = CGSizeMake(2000,2000);
             SKAction *moveintoplace = [SKAction sequence: @[
                                                             [SKAction moveTo:CGPointMake(CGRectGetMidX(self.frame),
                                                                                          45) duration:1],
+                                                            [SKAction scaleTo:0.7778 duration:1],
                                                             [SKAction rotateByAngle:M_PI/2 duration:2]
                                                             ]];
             [node runAction: moveintoplace completion:^{
@@ -138,8 +164,26 @@
                 [self.view presentScene:spaceshipScene];
             }];
         }
+        else if ([node.name isEqualToString:@"yesterdayNode"])
+        {
+            node.zPosition = 1000;
+            node.size = CGSizeMake(2000,2000);
+            SKAction *moveintoplace = [SKAction sequence: @[
+                                                            [SKAction moveTo:CGPointMake(CGRectGetMidX(self.frame),
+                                                                                         45) duration:1],
+                                                            [SKAction scaleTo:0.7778 duration:1],
+                                                            [SKAction rotateByAngle:M_PI/2 duration:2]
+                                                            ]];
+            [node runAction: moveintoplace completion:^{
+                SKScene *spaceshipScene  = [[YesterdayScene alloc] initWithSize:self.size];
+                [self.view presentScene:spaceshipScene];
+            }];
+        }
+
         else if ([node.name isEqualToString:@"emiNode"])
         {
+            node.zPosition = 1000;
+            node.size = CGSizeMake(2000,2000);
             SKAction *moveintoplace = [SKAction sequence: @[
                                                             [SKAction moveTo:CGPointMake(CGRectGetMidX(self.frame),
                                                                                          45) duration:1],
@@ -152,6 +196,8 @@
         }
         else if ([node.name isEqualToString:@"piNode"])
         {
+            node.zPosition = 1000;
+            node.size = CGSizeMake(2000,2000);
             SKAction *moveintoplace = [SKAction sequence: @[
                                                             [SKAction moveTo:CGPointMake(CGRectGetMidX(self.frame),
                                                                                          45) duration:1],
@@ -164,7 +210,26 @@
         }
         else if ([node.name isEqualToString:@"Tomorrow"])
         {
-            [self lockedAlert];
+            node.zPosition = 1000;
+            node.size = CGSizeMake(2000,2000);
+         //   Sentence *sentence = [Sentence sharedSentence];
+          //  if ([sentence.gameLevel isEqualToString:@"foobie"]){
+          
+                SKAction *moveintoplace = [SKAction sequence: @[
+                                                                [SKAction moveTo:CGPointMake(CGRectGetMidX(self.frame),
+                                                                                             45) duration:1],
+                                                                [SKAction rotateByAngle:M_PI/2 duration:2]
+                                                                ]];
+                [node runAction: moveintoplace completion:^{
+                    SKScene *spaceshipScene  = [[TomorrowScene alloc] initWithSize:self.size];
+                    [self.view presentScene:spaceshipScene];
+                }];
+
+          //  }
+          //  else{
+          //      [self lockedAlert];
+          //  }
+                
         }
 
 
@@ -205,7 +270,7 @@
 
     [self addChild:[self newPi]];
 
-   // [self addChild:[self newEmi]];
+   [self addChild:[self newEmi]];
 
 }
 @end

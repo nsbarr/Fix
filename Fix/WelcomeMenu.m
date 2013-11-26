@@ -58,7 +58,7 @@
     SKSpriteNode *parentNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     hello.fontSize = 14;
-    parentNode.size = CGSizeMake(200,200);
+    parentNode.size = hello.frame.size;
     parentNode.name = @"skipButton";
     hello.text = @"Skip";
     hello.position = CGPointMake(self.frame.size.width-40,
@@ -74,7 +74,7 @@
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     hello.fontSize = 18;
     hello.name = @"sentenceOne";
-    hello.text = @"Our mission seems strange.";
+    hello.text = @"We're out here in space.";
     hello.position = CGPointMake(CGRectGetMidX(self.frame),
                                  CGRectGetMidY(self.frame));
     return hello;
@@ -85,7 +85,7 @@
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     hello.fontSize = 18;
     hello.name = @"sentenceTwo";
-    hello.text = @"We broadcast radio waves.";
+    hello.text = @"Broadcasting radio waves.";
     hello.position = CGPointMake(CGRectGetMidX(self.frame),
                                  CGRectGetMidY(self.frame));
     return hello;

@@ -13,6 +13,7 @@ static Sentence *sharedSentence = nil;
 @implementation Sentence
 
 @synthesize fullText;
+@synthesize gameLevel;
 
 #pragma mark -
 #pragma mark Singleton Methods

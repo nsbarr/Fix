@@ -27,9 +27,10 @@
 		78917533181C303A00E777B3 /* AgainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 78917532181C303A00E777B3 /* AgainMenu.m */; };
 		7891753B181EE77000E777B3 /* EmiScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7891753A181EE77000E777B3 /* EmiScene.m */; };
 		78B53C2618200CBD003A9160 /* PiScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B53C2518200CBD003A9160 /* PiScene.m */; };
-		78B53C281821BB2D003A9160 /* backpack.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 78B53C271821BB2D003A9160 /* backpack.jpeg */; };
 		78B53C2A1821C00E003A9160 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B53C291821C00E003A9160 /* AudioToolbox.framework */; };
 		78CBEBCD1808A7A8006E7D4A /* WelcomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */; };
+		78D47ACD18400F650031FFC2 /* TomorrowScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D47ACC18400F650031FFC2 /* TomorrowScene.m */; };
+		78F2A30A183AF6360061D119 /* YesterdayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F2A309183AF6360061D119 /* YesterdayScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,10 +74,13 @@
 		7891753A181EE77000E777B3 /* EmiScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmiScene.m; sourceTree = "<group>"; };
 		78B53C2418200CBD003A9160 /* PiScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiScene.h; sourceTree = "<group>"; };
 		78B53C2518200CBD003A9160 /* PiScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiScene.m; sourceTree = "<group>"; };
-		78B53C271821BB2D003A9160 /* backpack.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backpack.jpeg; sourceTree = "<group>"; };
 		78B53C291821C00E003A9160 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		78CBEBCB1808A7A8006E7D4A /* WelcomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeMenu.h; sourceTree = "<group>"; };
 		78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeMenu.m; sourceTree = "<group>"; };
+		78D47ACB18400F650031FFC2 /* TomorrowScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TomorrowScene.h; sourceTree = "<group>"; };
+		78D47ACC18400F650031FFC2 /* TomorrowScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TomorrowScene.m; sourceTree = "<group>"; };
+		78F2A308183AF6360061D119 /* YesterdayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YesterdayScene.h; sourceTree = "<group>"; };
+		78F2A309183AF6360061D119 /* YesterdayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YesterdayScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +144,6 @@
 		7843E16B17FE271000F4DC5F /* Fix */ = {
 			isa = PBXGroup;
 			children = (
-				78B53C271821BB2D003A9160 /* backpack.jpeg */,
 				78917534181C53E100E777B3 /* iPad */,
 				7843E17417FE271000F4DC5F /* SpriteAppDelegate.h */,
 				7843E17517FE271000F4DC5F /* SpriteAppDelegate.m */,
@@ -153,6 +156,10 @@
 				7891752F18183B7D00E777B3 /* Sentence.m */,
 				78917539181EE77000E777B3 /* EmiScene.h */,
 				7891753A181EE77000E777B3 /* EmiScene.m */,
+				78F2A308183AF6360061D119 /* YesterdayScene.h */,
+				78F2A309183AF6360061D119 /* YesterdayScene.m */,
+				78D47ACB18400F650031FFC2 /* TomorrowScene.h */,
+				78D47ACC18400F650031FFC2 /* TomorrowScene.m */,
 				78B53C2418200CBD003A9160 /* PiScene.h */,
 				78B53C2518200CBD003A9160 /* PiScene.m */,
 				78CBEBCB1808A7A8006E7D4A /* WelcomeMenu.h */,
@@ -279,7 +286,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7843E17017FE271000F4DC5F /* InfoPlist.strings in Resources */,
-				78B53C281821BB2D003A9160 /* backpack.jpeg in Resources */,
 				7843E18317FE271000F4DC5F /* Images.xcassets in Resources */,
 				7843E17917FE271000F4DC5F /* Main.storyboard in Resources */,
 			);
@@ -301,10 +307,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				78CBEBCD1808A7A8006E7D4A /* WelcomeMenu.m in Sources */,
+				78D47ACD18400F650031FFC2 /* TomorrowScene.m in Sources */,
 				7843E17217FE271000F4DC5F /* main.m in Sources */,
 				7891753018183B7D00E777B3 /* Sentence.m in Sources */,
 				78B53C2618200CBD003A9160 /* PiScene.m in Sources */,
 				7843E17F17FE271000F4DC5F /* SpriteMyScene.m in Sources */,
+				78F2A30A183AF6360061D119 /* YesterdayScene.m in Sources */,
 				7843E17617FE271000F4DC5F /* SpriteAppDelegate.m in Sources */,
 				7843E17C17FE271000F4DC5F /* SpriteViewController.m in Sources */,
 				7891753B181EE77000E777B3 /* EmiScene.m in Sources */,

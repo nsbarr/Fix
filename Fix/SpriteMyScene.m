@@ -430,9 +430,10 @@ static inline int rndInt(int low, int high) {
     
     if (isGameOver){
         if (!didIRun){
+            Sentence *sentence = [Sentence sharedSentence];
+            sentence.gameLevel = @"foobie";
         [self removeAllActions];
         [self movetoplace];
-        Sentence *sentence = [Sentence sharedSentence];
         sentence.fullText = sentenceSoFar;
         
         SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent

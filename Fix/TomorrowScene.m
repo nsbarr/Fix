@@ -1,14 +1,12 @@
 //
-//  PiScene.m
+//  YesterdayScene.m
 //  Fix
 //
-//  Created by Nicholas Barr on 10/29/13.
+//  Created by Nicholas Barr on 11/18/13.
 //  Copyright (c) 2013 Nicholas Barr. All rights reserved.
 //
-//3.141592653589793238462643383279502884197169399375105820974944592307816406286
 
-
-#import "PiScene.h"
+#import "TomorrowScene.h"
 
 
 #import "SpriteMyScene.h"
@@ -18,15 +16,14 @@
 #import "AgainMenu.h"
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioServices.h>
 
-@interface PiScene () <SKPhysicsContactDelegate>
+@interface TomorrowScene () <SKPhysicsContactDelegate>
 
 @property BOOL contentCreated;
 
 
 @end
-
-
 
 static CGFloat _sentenceheight = 0.00f; //tracks height of sentence so we know whether to affix a word
 static int lengthofsentence = 1; //how many words is the sentence? used to generate the right words
@@ -35,13 +32,15 @@ static BOOL isGameOver = NO; //game is not over
 static BOOL didIRun = NO;
 static BOOL sentenceTooTall = NO;
 static int wordFontSize = 14;
+static NSString *previousWord = nil;
+static NSString *theCorpus = @"Tomorrow never knows, that's how the story goes. What will be or won't be. That's what the mystery you and me see, that's what sets us free, what sets us apart, what about matters of the heart? What matters, tomorrow matters. Matters and mad hatters. Together or apart, there's so much we can do. So much fun and so we go. Tomorrow will you pick up some bread the pick up lines I said. Tomorrow, Tomorrow, I will love you in the near future. What future may come the mystery of what may come. I may come I may not, the future is uncertain. We will be on a beach we will be together tomorrow. I remember the future. I remember the slap slap of her flip flops and how quickly I learned her walk and how quickly it meant nothing to me I remember the slap you say I gave you and hold over my head tomorrow will it head in the right direction and what direction is right? How many more times will you come. How many more times will you come more times than one. The mistakes we still might make the times you come might be fake. These were my final mistakes, you were someone to blame for not taking chances. Taking matters into my own hands I watched you walk and said stop like you say stop before the times you come. My own hands and the smell that sets them apart. I learned what sets us apart. Forget about her. Forget about the time we spent together. Forget today. Forget yesterday. Forget tomorrow. Remember the way we will touch on the subway. how we will keep in touch after, how your jacket will brush against mine, nothing against you, there's so much we can do. the way. that you. do I. want that. too too. When you get off I get off. We show up at Lorimer at the same time. What time is it at tomorrow.";
 
 //physics body masks
 static const uint32_t rainCategory       =  0x1 << 0;
 static const uint32_t heroCategory       =  0x1 << 1;
 
 
-@implementation PiScene
+@implementation TomorrowScene
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
@@ -50,8 +49,7 @@ static const uint32_t heroCategory       =  0x1 << 1;
         didIRun = NO;
         lengthofsentence = 1;
         sentenceTooTall = NO;
-       // UIColor *deep = [UIColor colorWithRed:33.0/255 green:43.0/255 blue:53.0/255 alpha:1];
-       // self.backgroundColor = deep;
+        //[self generateWord];
     }
     return self;
 }
@@ -66,18 +64,24 @@ static const uint32_t heroCategory       =  0x1 << 1;
     }
     self.physicsWorld.gravity = CGVectorMake(0.0,0.0);
     self.physicsWorld.contactDelegate = self;
-    UIColor *deep = [UIColor colorWithRed:33.0/255 green:43.0/255 blue:53.0/255 alpha:1];
+    UIColor *deep = [UIColor colorWithRed:11.0/255 green:17.0/255 blue:26.0/255 alpha:1];
     self.backgroundColor = deep;
 }
 
 
 -(SKSpriteNode *)hero {
     
+    NSArray *sourceText = [theCorpus componentsSeparatedByString:@" "];
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     testNode.name= @"hero";
     hello.fontSize = wordFontSize;
-    hello.text= @"3.";
+    // NSUInteger randomSourceIndex = arc4random() % [sourceText count];
+    //  previousWord = [sourceText objectAtIndex:randomSourceIndex];
+    //  hello.text = [previousWord.capitalizedString stringByAppendingString:@" "];
+    hello.text = @"Tomorrow";
+    previousWord = hello.text;
+    hello.text = [hello.text.capitalizedString stringByAppendingString:@" "];
     [testNode addChild:hello];
     testNode.zRotation=M_PI/2;
     testNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:hello.frame.size];
@@ -108,22 +112,56 @@ static inline CGFloat rndValue(CGFloat low, CGFloat high) {
     return skRandf() * (high - low) + low;
 }
 
-static inline int rndInt(int low, int high) {
+static inline NSUInteger rndInt(NSUInteger low, NSUInteger high) {
     return skRandf() * (high - low) + low;
 }
+
 
 
 
 - (void)addWord
 {
     
-    NSArray *word1 = @[ @"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9"];
+    
+    NSString *separators = @",!./;?-";
+    NSCharacterSet *setOfseparators = [NSCharacterSet characterSetWithCharactersInString:separators];
+    
+    NSArray *sourceText = [theCorpus componentsSeparatedByString:@" "];
+    
+    
+    
+    //   NSArray *sourceText = @[@"this",@"must",@"be",@"a",@"text",@"this",@"is",@"a",@"joke",@"this",@"is",@"always",@"joke"];
+    if (previousWord == nil){
+        // NSUInteger randomSourceIndex = arc4random() % [sourceText count];
+        //previousWord = [sourceText objectAtIndex:randomSourceIndex];
+        NSLog(@"loadedtooearly");
+    }
+    NSLog(@"the previous word is %@", previousWord);
+    NSMutableArray *possibleWords = [[NSMutableArray alloc]init];
+    int i;
+    for (i = 0; i < [sourceText count]; i++) {
+        
+        NSInteger indexOfTheNextWordCandidate = i+1;
+        //NSString *nextWordCandidate = nil;
+        NSString *string = [sourceText objectAtIndex:i];
+        if ([string isEqualToString:previousWord])
+        {
+            NSString *nextWordCandidate = sourceText[indexOfTheNextWordCandidate];
+            [possibleWords addObject:nextWordCandidate];
+        }
+        
+        
+    }
+    NSUInteger randomIndex = arc4random() % [possibleWords count];
+    NSString *nextWord = [possibleWords objectAtIndex:randomIndex];
     
     SKSpriteNode *parentNode = [[SKSpriteNode alloc] init];
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
+    hello.text = nextWord;
+    
     [parentNode addChild: hello];
-   
-    hello.text = [word1 objectAtIndex:rndInt(0,10)];
+    
+    
     hello.name = hello.text;
     hello.fontSize = wordFontSize;
     
@@ -290,16 +328,65 @@ static inline int rndInt(int low, int high) {
         
         
         
-        
+        previousWord = labelNode.name;
         
         //now look at what kind of item it is. If it's a mirror, then invert the words.
-        //3.141592653589793238462643383279502884197169399375105820974944592307816406286
-        NSArray *piNumbers = @[ @"1", @"4", @"1", @"5", @"9", @"2", @"6", @"5", @"3", @"5", @"8", @"9", @"7", @"9",@"3",@"2",@"3",@"8",@"4",@"6",@"2",@"6"];
-        NSString *correctNumber = [piNumbers objectAtIndex:(lengthofsentence-1)];
-        if (![labelNode.name isEqualToString:correctNumber]){
-        isGameOver = YES;
+        if ([labelNode.name  isEqual: @"mirror"]){
+            
+            SKAction *mirror = [SKAction sequence: @[
+                                                     [SKAction scaleXTo:-1 y:1 duration:.3],
+                                                     [SKAction waitForDuration:3.0 withRange:0.25],
+                                                     [SKAction scaleXTo: 1 y:1 duration:.3]
+                                                     ]];
+            NSArray *nodes = self.children;
+            for (SKNode *node in nodes) {
+                [node runAction: mirror];
+            }
         }
         
+        if ([labelNode.name  isEqual: @"love"]){
+            UIColor *red = [UIColor redColor];
+            UIColor *white = [UIColor whiteColor];
+            SKAction *turnRed = [SKAction sequence: @[
+                                                      [SKAction scaleBy:.8 duration:.15],
+                                                      [SKAction scaleBy:1.75 duration:.3],
+                                                      [SKAction scaleBy:.714285714 duration:.5],
+                                                      [SKAction waitForDuration:0.15],
+                                                      
+                                                      
+                                                      // [SKAction scaleBy: -1.5 duration: 1],
+                                                      ]];
+            labelNode.fontColor = red;
+            [labelNode runAction: [SKAction repeatAction:turnRed count:3] completion:^{
+                labelNode.fontColor = white;
+            }];
+            
+            [self enumerateChildNodesWithName:@"hero" usingBlock:^(SKNode *node, BOOL *stop) {
+                SKLabelNode *theLabel = node.children[0];
+                theLabel.fontColor = red;
+                [theLabel runAction: [SKAction repeatAction:turnRed count:3] completion:^{
+                    theLabel.fontColor = white;
+                }];
+            }];
+            
+            
+            
+        }
+        
+        
+        
+        //if it has a ".", end the game.
+        if ([labelNode.name isEqual:@"."] || [labelNode.name isEqual:@"?"] || [labelNode.name isEqual:@"!"] ) {
+            isGameOver = YES;
+            
+        }
+        
+        if ([labelNode.name rangeOfString:@"."].location == NSNotFound){
+            isGameOver = NO;
+        }
+        else {
+            isGameOver = YES;
+        }
         lengthofsentence = lengthofsentence + 1;
         
         
@@ -340,7 +427,7 @@ static inline int rndInt(int low, int high) {
     
     SKAction *makeWord = [SKAction sequence: @[
                                                [SKAction performSelector:@selector(addWord) onTarget:self],
-                                               [SKAction waitForDuration:0.4 withRange:0.25]
+                                               [SKAction waitForDuration:1.0 withRange:0.25]
                                                ]];
     [self runAction: [SKAction repeatActionForever:makeWord]];
     
@@ -371,9 +458,14 @@ static inline int rndInt(int low, int high) {
             [node removeFromParent];
         }
     }];
-    
-    if (_sentenceheight > self.frame.size.height - 20){
-        isGameOver = YES;
+  //  SKAction *schoochDown = [SKAction moveByX:0 y:-5 duration:.5];
+
+    if (_sentenceheight > self.frame.size.height - 400){
+      //  sentenceTooTall = YES;
+     //   [self enumerateChildNodesWithName:@"hero" usingBlock:^(SKNode *node, BOOL *stop) {
+    //        [node runAction:schoochDown];
+            
+     //   }];
     }
     
 }
@@ -417,7 +509,11 @@ static inline int rndInt(int low, int high) {
         }
         
     }
+    if (sentenceTooTall){
+
+    }
 }
+
 
 
 -(void)movetoplace
@@ -452,17 +548,38 @@ static inline int rndInt(int low, int high) {
 
 - (void)addRoids
 {
+    NSUInteger rando = rndInt(0,3);
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     hello.name = @"roids";
     hello.text = @";";
-    hello.fontSize = 8;
-    hello.alpha = 0.3;
-    hello.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
+    SKAction *fall = nil;
+    
+    if (rando == 0){
+        hello.fontSize = 8;
+        hello.alpha = 0.4;
+        hello.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
+        
+        fall = [SKAction moveTo:CGPointMake(hello.position.x,-20) duration:3];
+    }
+    else if(rando == 1){
+        hello.fontSize = 10;
+        hello.alpha = 0.5;
+        hello.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
+        
+        fall = [SKAction moveTo:CGPointMake(hello.position.x,-20) duration:2];
+    }
+    else {
+        hello.fontSize = 12;
+        hello.alpha = 0.7;
+        hello.position = CGPointMake(skRand(0, self.size.width), self.size.height+100);
+        
+        fall = [SKAction moveTo:CGPointMake(hello.position.x,-20) duration:1];
+    }
     hello.physicsBody.dynamic = NO;
     
     
     
-    SKAction *fall = [SKAction moveTo:CGPointMake(hello.position.x,-20) duration:1];
+    //  SKAction *fall = [SKAction moveTo:CGPointMake(hello.position.x,-20) duration:1];
     
     [hello runAction: fall];
     
@@ -471,5 +588,6 @@ static inline int rndInt(int low, int high) {
     
     
 }
+
 
 @end
