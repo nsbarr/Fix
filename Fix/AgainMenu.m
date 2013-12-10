@@ -15,6 +15,7 @@
 #import "TomorrowScene.h"
 
 @interface AgainMenu ()
+
 @property BOOL contentCreated;
 @end
 @implementation AgainMenu
@@ -28,10 +29,16 @@ BOOL tomorrowLocked = YES;
     {
         [self createSceneContents];
         self.contentCreated = YES;
+      
     }
+    Sentence *sentence = [Sentence sharedSentence];
+  //  if (sentence.level == 0){
+        sentence.level = 10;
+   // }
 }
 
 
+//level1 node
 -(SKSpriteNode *)newHero {
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
@@ -51,6 +58,7 @@ BOOL tomorrowLocked = YES;
     return testNode;
 }
 
+//level2node
 -(SKSpriteNode *)newYesterday {
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
@@ -60,8 +68,11 @@ BOOL tomorrowLocked = YES;
     testNode.color = deep;
     hello.fontSize = 18;
     hello.text= @"Yesterday";
-   // UIColor *gray = [UIColor grayColor];
-   // hello.fontColor = gray;
+    Sentence *sentence = [Sentence sharedSentence];
+    if (sentence.level < 2){
+    UIColor *gray = [UIColor grayColor];
+    hello.fontColor = gray;
+    }
     [testNode addChild:hello];
     testNode.zRotation = 0;
     testNode.physicsBody = 0;
@@ -73,6 +84,7 @@ BOOL tomorrowLocked = YES;
 }
 
 
+//level 3 node
 -(SKSpriteNode *)newTomorrow {
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
@@ -83,13 +95,9 @@ BOOL tomorrowLocked = YES;
     UIColor *deep = [UIColor colorWithRed:11.0/255 green:17.0/255 blue:26.0/255 alpha:1];
     testNode.color = deep;
     Sentence *sentence = [Sentence sharedSentence];
-    if ([sentence.gameLevel isEqualToString:@"foobie"]){
-        UIColor *white = [UIColor whiteColor];
-        hello.fontColor = white;
-    }
-    else{
-   // UIColor *gray = [UIColor grayColor];
-   // hello.fontColor = gray;
+    if (sentence.level < 3){
+        UIColor *gray = [UIColor grayColor];
+        hello.fontColor = gray;
     }
     [testNode addChild:hello];
     testNode.zRotation=0;
@@ -101,6 +109,8 @@ BOOL tomorrowLocked = YES;
     return testNode;
 }
 
+
+//level 4 node
 -(SKSpriteNode *)newPi {
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
@@ -117,16 +127,22 @@ BOOL tomorrowLocked = YES;
     hello.physicsBody.collisionBitMask = 0;
     testNode.position = CGPointMake(CGRectGetMidX(self.frame),
                                     CGRectGetMidY(self.frame)+2*self.size.height/5);
+    Sentence *sentence = [Sentence sharedSentence];
+    if (sentence.level < 4){
+        UIColor *gray = [UIColor grayColor];
+        hello.fontColor = gray;
+    }
     return testNode;
 }
 
+//level4 node
 -(SKSpriteNode *)newEmi {
     SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     testNode.name= @"emiNode";
     testNode.size= CGSizeMake(self.size.width,self.size.height/5);
     hello.fontSize = 18;
-    hello.text= @"∞";
+    hello.text = @"∞";
     [testNode addChild:hello];
     UIColor *deep = [UIColor colorWithRed:3.0/255 green:5.0/255 blue:13.0/255 alpha:1];
     testNode.color = deep;
@@ -136,6 +152,11 @@ BOOL tomorrowLocked = YES;
     hello.physicsBody.collisionBitMask = 0;
     testNode.position = CGPointMake(CGRectGetMidX(self.frame),
                                     CGRectGetMidY(self.frame)-2*self.size.height/5);
+    Sentence *sentence = [Sentence sharedSentence];
+    if (sentence.level < 4){
+        UIColor *gray = [UIColor grayColor];
+        hello.fontColor = gray;
+    }
     return testNode;
 }
 
@@ -144,15 +165,17 @@ BOOL tomorrowLocked = YES;
 - (void)touchesBegan:(NSSet *) touches withEvent:(UIEvent *)event
 {
     
-    
+    Sentence *sentence = [Sentence sharedSentence];
+ 
     UITouch *touch = [touches anyObject];
     
     NSArray *nodes = [self nodesAtPoint:[touch locationInNode:self]];
     for (SKSpriteNode *node in nodes) {
         if ([node.name isEqualToString:@"todayNode"])
         {
+            if (sentence.level >= 1){
             node.zPosition = 1000;
-            node.size = CGSizeMake(2000,2000);
+            node.size = CGSizeMake(4000,4000);
             SKAction *moveintoplace = [SKAction sequence: @[
                                                             [SKAction moveTo:CGPointMake(CGRectGetMidX(self.frame),
                                                                                          45) duration:1],
@@ -163,11 +186,13 @@ BOOL tomorrowLocked = YES;
                 SKScene *spaceshipScene  = [[SpriteMyScene alloc] initWithSize:self.size];
                 [self.view presentScene:spaceshipScene];
             }];
+            }
         }
         else if ([node.name isEqualToString:@"yesterdayNode"])
         {
+            if (sentence.level >= 2) {
             node.zPosition = 1000;
-            node.size = CGSizeMake(2000,2000);
+            node.size = CGSizeMake(4000,4000);
             SKAction *moveintoplace = [SKAction sequence: @[
                                                             [SKAction moveTo:CGPointMake(CGRectGetMidX(self.frame),
                                                                                          45) duration:1],
@@ -179,57 +204,61 @@ BOOL tomorrowLocked = YES;
                 [self.view presentScene:spaceshipScene];
             }];
         }
+        }
 
         else if ([node.name isEqualToString:@"emiNode"])
         {
+            if (sentence.level >=4){
             node.zPosition = 1000;
-            node.size = CGSizeMake(2000,2000);
+            node.size = CGSizeMake(4000,4000);
             SKAction *moveintoplace = [SKAction sequence: @[
                                                             [SKAction moveTo:CGPointMake(CGRectGetMidX(self.frame),
                                                                                          45) duration:1],
+                                                            [SKAction scaleTo:0.7778 duration:1],
                                                             [SKAction rotateByAngle:M_PI/2 duration:2]
                                                             ]];
             [node runAction: moveintoplace completion:^{
                 SKScene *spaceshipScene  = [[EmiScene alloc] initWithSize:self.size];
                 [self.view presentScene:spaceshipScene];
             }];
+            }
         }
         else if ([node.name isEqualToString:@"piNode"])
         {
+            if (sentence.level >=4){
             node.zPosition = 1000;
-            node.size = CGSizeMake(2000,2000);
+            node.size = CGSizeMake(4000,4000);
             SKAction *moveintoplace = [SKAction sequence: @[
                                                             [SKAction moveTo:CGPointMake(CGRectGetMidX(self.frame),
                                                                                          45) duration:1],
+                                                            [SKAction scaleTo:0.7778 duration:1],
                                                             [SKAction rotateByAngle:M_PI/2 duration:2]
                                                             ]];
             [node runAction: moveintoplace completion:^{
                 SKScene *spaceshipScene  = [[PiScene alloc] initWithSize:self.size];
                 [self.view presentScene:spaceshipScene];
             }];
+            }
         }
         else if ([node.name isEqualToString:@"Tomorrow"])
         {
+            if (sentence.level >= 3) {
             node.zPosition = 1000;
-            node.size = CGSizeMake(2000,2000);
+            node.size = CGSizeMake(4000,4000);
          //   Sentence *sentence = [Sentence sharedSentence];
           //  if ([sentence.gameLevel isEqualToString:@"foobie"]){
           
                 SKAction *moveintoplace = [SKAction sequence: @[
                                                                 [SKAction moveTo:CGPointMake(CGRectGetMidX(self.frame),
                                                                                              45) duration:1],
+                                                                [SKAction scaleTo:0.7778 duration:1],
                                                                 [SKAction rotateByAngle:M_PI/2 duration:2]
                                                                 ]];
                 [node runAction: moveintoplace completion:^{
                     SKScene *spaceshipScene  = [[TomorrowScene alloc] initWithSize:self.size];
                     [self.view presentScene:spaceshipScene];
                 }];
-
-          //  }
-          //  else{
-          //      [self lockedAlert];
-          //  }
-                
+            }
         }
 
 

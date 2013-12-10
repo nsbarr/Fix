@@ -14,13 +14,34 @@ static Sentence *sharedSentence = nil;
 
 @synthesize fullText;
 @synthesize gameLevel;
+@synthesize level;
 
 #pragma mark -
 #pragma mark Singleton Methods
 
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    
+   // self.level = [decoder decodeObjectForKey:@"level"];
+    self.level = [[decoder decodeObjectForKey:@"count"] unsignedIntegerValue];
+    return self;
+}
+
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:[NSNumber numberWithUnsignedInteger:self.level] forKey:@"level"];
+}
+
+
 + (Sentence *)sharedSentence {
     if(sharedSentence == nil){
         sharedSentence = [[super allocWithZone:NULL] init];
+        sharedSentence.level = 0;
     }
     return sharedSentence;
 }

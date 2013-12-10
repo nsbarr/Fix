@@ -25,6 +25,8 @@
         [self createSceneContents];
         self.contentCreated = YES;
     }
+    UIColor *mid = [UIColor colorWithRed:16.0/255 green:23.0/255 blue:32.0/255 alpha:1];
+    self.backgroundColor = mid;
 }
 
 - (void)createSceneContents

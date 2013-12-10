@@ -118,12 +118,19 @@ static inline int rndInt(int low, int high) {
 {
     
     NSArray *word1 = @[ @"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9"];
+    NSArray *word2 = @[ @"great job", @"you're smart", @"enough already"];
+
     
     SKSpriteNode *parentNode = [[SKSpriteNode alloc] init];
     SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];
     [parentNode addChild: hello];
+    if (lengthofsentence >= 20){
+        hello.text = [word2 objectAtIndex:rndInt(0,3)];
+    }
+    else {
    
     hello.text = [word1 objectAtIndex:rndInt(0,10)];
+    }
     hello.name = hello.text;
     hello.fontSize = wordFontSize;
     
@@ -163,18 +170,16 @@ static inline int rndInt(int low, int high) {
             
             SKAction *teleport = [SKAction sequence:@[
                                                       [SKAction waitForDuration:0],
-                                                      [SKAction moveTo:CGPointMake(xlocation, node.position.y) duration:time]]];
+                                                      [SKAction moveToX:xlocation duration:time]]];
             [node runAction: [SKAction repeatAction: teleport count:(1)]];
             
         }];
     }
 }
 
-
-- (void)touchesBegan:(NSSet *) touches withEvent:(UIEvent *)event {
+- (void)touchesEnded:(NSSet *) touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
-    
     if (isGameOver) {
         //don't respond to touch
     }
@@ -192,11 +197,17 @@ static inline int rndInt(int low, int high) {
             
             SKAction *teleport = [SKAction sequence:@[
                                                       [SKAction waitForDuration:0],
-                                                      [SKAction moveTo:CGPointMake(xlocation, node.position.y) duration:time]]];
+                                                      [SKAction moveToX:xlocation duration:time]]];
             [node runAction: [SKAction repeatAction: teleport count:(1)]];
             
         }];
     }
+}
+
+- (void)touchesBegan:(NSSet *) touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [touches anyObject];
+    
     
     NSArray *nodes = [self nodesAtPoint:[touch locationInNode:self]];
     _spriteViewController = self.view.window.rootViewController;
@@ -223,9 +234,6 @@ static inline int rndInt(int low, int high) {
             
         }
     }
-    
-    
-    
     
     
 }
@@ -375,7 +383,20 @@ static inline int rndInt(int low, int high) {
     if (_sentenceheight > self.frame.size.height - 20){
         isGameOver = YES;
     }
+    SKAction *schoochDown = [SKAction moveByX:0 y:-200 duration:1];
     
+    if (_sentenceheight > self.frame.size.height - 150){
+        sentenceTooTall = YES;
+    }
+    if (sentenceTooTall){
+        sentenceTooTall = !sentenceTooTall;
+        [self enumerateChildNodesWithName:@"hero" usingBlock:^(SKNode *node, BOOL *stop) {
+            [node runAction:schoochDown];
+            NSLog(@"schooching");
+            _sentenceheight = _sentenceheight - 200;
+        }];
+    }
+
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -386,7 +407,7 @@ static inline int rndInt(int low, int high) {
             [self removeAllActions];
             [self movetoplace];
             Sentence *sentence = [Sentence sharedSentence];
-            sentence.fullText = sentenceSoFar;
+            sentence.fullText = [NSString stringWithFormat:@"I remember the first %d digits of pi... ", lengthofsentence-1];
             
             SKSpriteNode *testNode = [[SKSpriteNode alloc] init];//parent
             SKLabelNode *hello = [SKLabelNode labelNodeWithFontNamed:@"Courier-Bold"];

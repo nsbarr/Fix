@@ -27,8 +27,8 @@
     // Configure the view.
     SKView * skView = (SKView *)self.view;
     
- //   skView.showsFPS = YES;
- //   skView.showsNodeCount = YES;
+   // skView.showsFPS = YES;
+   // skView.showsNodeCount = YES;
     
     
     // Create and configure the scene.
@@ -75,11 +75,6 @@
     
     NSLog(@"openingTweetSheet");
 
-    NSLog(@"%@",sentencetext);
-    
-    sentencetext = @"fuck";
-    
-    
     //  Create an instance of the Tweet Sheet
     SLComposeViewController *tweetSheet = [SLComposeViewController
                                            composeViewControllerForServiceType:
@@ -142,6 +137,8 @@
     
 
 }
+
+
 
 
 
