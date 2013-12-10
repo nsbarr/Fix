@@ -32,9 +32,9 @@ BOOL tomorrowLocked = YES;
       
     }
     Sentence *sentence = [Sentence sharedSentence];
-  //  if (sentence.level == 0){
-        sentence.level = 10;
-   // }
+    if (sentence.level == 0){
+        sentence.level = 1;
+    }
 }
 
 
