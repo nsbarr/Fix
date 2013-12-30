@@ -225,7 +225,6 @@ static inline NSUInteger rndInt(NSUInteger low, NSUInteger high) {
     
     UITouch *touch = [touches anyObject];
 
-    
     NSArray *nodes = [self nodesAtPoint:[touch locationInNode:self]];
     _spriteViewController = self.view.window.rootViewController;
     
@@ -437,10 +436,10 @@ static inline NSUInteger rndInt(NSUInteger low, NSUInteger high) {
     }
     if (sentenceTooTall){
         sentenceTooTall = !sentenceTooTall;
+        _sentenceheight = _sentenceheight - 200;
         [self enumerateChildNodesWithName:@"hero" usingBlock:^(SKNode *node, BOOL *stop) {
         [node runAction:schoochDown];
         NSLog(@"schooching");
-        _sentenceheight = _sentenceheight - 200;
         }];
     }
     

@@ -96,7 +96,7 @@
     
     //  Set the initial body of the Tweet
     Sentence *sentence = [Sentence sharedSentence];
-    NSString *wordToAppend = [sentence.fullText stringByAppendingString:@"via @Poems.io"];
+    NSString *wordToAppend = [sentence.fullText stringByAppendingString:@"via @Poemsio"];
     
 
     [tweetSheet setInitialText:wordToAppend];

@@ -390,10 +390,10 @@ static inline int rndInt(int low, int high) {
     }
     if (sentenceTooTall){
         sentenceTooTall = !sentenceTooTall;
+        _sentenceheight = _sentenceheight - 200;
         [self enumerateChildNodesWithName:@"hero" usingBlock:^(SKNode *node, BOOL *stop) {
             [node runAction:schoochDown];
             NSLog(@"schooching");
-            _sentenceheight = _sentenceheight - 200;
         }];
     }
 
