@@ -69,10 +69,7 @@ BOOL tomorrowLocked = YES;
     hello.fontSize = 18;
     hello.text= @"Yesterday";
     Sentence *sentence = [Sentence sharedSentence];
-    if (sentence.level < 2){
-    UIColor *gray = [UIColor grayColor];
-    hello.fontColor = gray;
-    }
+
     [testNode addChild:hello];
     testNode.zRotation = 0;
     testNode.physicsBody = 0;
@@ -95,10 +92,7 @@ BOOL tomorrowLocked = YES;
     UIColor *deep = [UIColor colorWithRed:11.0/255 green:17.0/255 blue:26.0/255 alpha:1];
     testNode.color = deep;
     Sentence *sentence = [Sentence sharedSentence];
-    if (sentence.level < 3){
-        UIColor *gray = [UIColor grayColor];
-        hello.fontColor = gray;
-    }
+
     [testNode addChild:hello];
     testNode.zRotation=0;
     testNode.physicsBody = 0;
@@ -128,10 +122,7 @@ BOOL tomorrowLocked = YES;
     testNode.position = CGPointMake(CGRectGetMidX(self.frame),
                                     CGRectGetMidY(self.frame)+2*self.size.height/5);
     Sentence *sentence = [Sentence sharedSentence];
-    if (sentence.level < 4){
-        UIColor *gray = [UIColor grayColor];
-        hello.fontColor = gray;
-    }
+
     return testNode;
 }
 
@@ -153,10 +144,7 @@ BOOL tomorrowLocked = YES;
     testNode.position = CGPointMake(CGRectGetMidX(self.frame),
                                     CGRectGetMidY(self.frame)-2*self.size.height/5);
     Sentence *sentence = [Sentence sharedSentence];
-    if (sentence.level < 4){
-        UIColor *gray = [UIColor grayColor];
-        hello.fontColor = gray;
-    }
+
     return testNode;
 }
 
@@ -173,7 +161,7 @@ BOOL tomorrowLocked = YES;
     for (SKSpriteNode *node in nodes) {
         if ([node.name isEqualToString:@"todayNode"])
         {
-            if (sentence.level >= 1){
+            if (sentence.level > 0){
             node.zPosition = 1000;
             node.size = CGSizeMake(4000,4000);
             SKAction *moveintoplace = [SKAction sequence: @[
@@ -190,7 +178,7 @@ BOOL tomorrowLocked = YES;
         }
         else if ([node.name isEqualToString:@"yesterdayNode"])
         {
-            if (sentence.level >= 2) {
+            if (sentence.level > 0) {
             node.zPosition = 1000;
             node.size = CGSizeMake(4000,4000);
             SKAction *moveintoplace = [SKAction sequence: @[
@@ -208,7 +196,7 @@ BOOL tomorrowLocked = YES;
 
         else if ([node.name isEqualToString:@"emiNode"])
         {
-            if (sentence.level >=4){
+            if (sentence.level >0){
             node.zPosition = 1000;
             node.size = CGSizeMake(4000,4000);
             SKAction *moveintoplace = [SKAction sequence: @[
@@ -225,7 +213,7 @@ BOOL tomorrowLocked = YES;
         }
         else if ([node.name isEqualToString:@"piNode"])
         {
-            if (sentence.level >=4){
+            if (sentence.level >0){
             node.zPosition = 1000;
             node.size = CGSizeMake(4000,4000);
             SKAction *moveintoplace = [SKAction sequence: @[
@@ -242,7 +230,7 @@ BOOL tomorrowLocked = YES;
         }
         else if ([node.name isEqualToString:@"Tomorrow"])
         {
-            if (sentence.level >= 3) {
+            if (sentence.level >0) {
             node.zPosition = 1000;
             node.size = CGSizeMake(4000,4000);
          //   Sentence *sentence = [Sentence sharedSentence];
