@@ -10,13 +10,19 @@
 #import "WelcomeMenu.h"
 #import "SpriteMyScene.h"
 #import "Sentence.h"
+#import "PiScene.h"
 #import <Social/Social.h>
+
+@import CoreMotion;
 
 @interface SpriteViewController ()
 
 @end
 
-@implementation SpriteViewController
+@implementation SpriteViewController {
+    
+    CMMotionManager *_motionManager;
+}
 
 @synthesize sentencetext;
 
@@ -32,7 +38,7 @@
     
     
     // Create and configure the scene.
-    WelcomeMenu * scene = [WelcomeMenu sceneWithSize:skView.bounds.size];
+    PiScene * scene = [PiScene sceneWithSize:skView.bounds.size];
     SpriteMyScene * myScene = [SpriteMyScene sceneWithSize:skView.bounds.size];
     myScene.spriteViewController = self;
   //  scene.spriteViewController = self;
@@ -42,7 +48,15 @@
    // scene.spriteViewController = self;
     //[twitterButton removeFromSuperview];
     
+    //start reading acceleration data
 
+    _motionManager = [[CMMotionManager alloc] init];
+    _motionManager.accelerometerUpdateInterval = 0.05;
+    [_motionManager startAccelerometerUpdates];
+    
+    
+    scene.motionManager = _motionManager;
+    
     
     // Present the scene.
     [skView presentScene:scene];

@@ -18,6 +18,7 @@
 #import "AgainMenu.h"
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
+#import "SKTUtils.h"
 
 @interface PiScene () <SKPhysicsContactDelegate>
 
@@ -81,7 +82,7 @@ static const uint32_t heroCategory       =  0x1 << 1;
     [testNode addChild:hello];
     testNode.zRotation=M_PI/2;
     testNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:hello.frame.size];
-    testNode.physicsBody.dynamic = NO;
+    testNode.physicsBody.dynamic = YES;
     testNode.physicsBody.categoryBitMask = heroCategory;
     testNode.physicsBody.contactTestBitMask = rainCategory | heroCategory;
     testNode.physicsBody.collisionBitMask = 0;
@@ -399,7 +400,44 @@ static inline int rndInt(int low, int high) {
 
 }
 
+-(void)moveHeroFromAcceleration {
+    GLKVector3 raw = GLKVector3Make(
+    _motionManager.accelerometerData.acceleration.x,
+    _motionManager.accelerometerData.acceleration.y,
+    _motionManager.accelerometerData.acceleration.z);
+    if (GLKVector3AllEqualToScalar(raw, 0)) {
+        return;
+    }
+    
+    static GLKVector3 ax, ay, az;
+    ay = GLKVector3Make(-0.04f, -0.76f, -0.65f); //comfortable position
+    az = GLKVector3Make(0.0f, 1.0f, 0.0f);
+    ax = GLKVector3Normalize(GLKVector3CrossProduct(az, ay));
+    
+    CGPoint accel2D = CGPointZero;
+    accel2D.x = GLKVector3DotProduct(raw, az); accel2D.y = GLKVector3DotProduct(raw, ax); accel2D = CGPointNormalize(accel2D);
+    
+//    static const float steerDeadZone = 0.15;
+//    if (fabsf(accel2D.x) < steerDeadZone) accel2D.x = 0;
+//    if (fabsf(accel2D.y) < steerDeadZone) accel2D.y = 0;
+    
+  //  float maxAccelerationPerSecond = _maxSpeed;
+    
+    
+    [self enumerateChildNodesWithName:@"hero" usingBlock:^(SKNode *node, BOOL *stop) {
+        SKAction *changeVelocity = [SKAction runBlock:^{
+            node.physicsBody.velocity = CGVectorMake(accel2D.x, accel2D.y);
+        }];
+        [node runAction: changeVelocity];
+
+    }];
+
+}
+
+
 -(void)update:(CFTimeInterval)currentTime {
+    
+    NSLog(@"accelerometer [%.2f, %.2f, %.2f]", _motionManager.accelerometerData.acceleration.x, _motionManager.accelerometerData.acceleration.y, _motionManager.accelerometerData.acceleration.z);
     
     
     if (isGameOver){
@@ -438,6 +476,9 @@ static inline int rndInt(int low, int high) {
         }
         
     }
+    
+    
+    [self moveHeroFromAcceleration];
 }
 
 

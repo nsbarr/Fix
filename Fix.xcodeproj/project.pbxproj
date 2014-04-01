@@ -30,6 +30,11 @@
 		7891753B181EE77000E777B3 /* EmiScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7891753A181EE77000E777B3 /* EmiScene.m */; };
 		78B53C2618200CBD003A9160 /* PiScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B53C2518200CBD003A9160 /* PiScene.m */; };
 		78B53C2A1821C00E003A9160 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B53C291821C00E003A9160 /* AudioToolbox.framework */; };
+		78BB0CCF18EB7D4A00FAB913 /* SKAction+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB0CC618EB7D4A00FAB913 /* SKAction+SKTExtras.m */; };
+		78BB0CD018EB7D4A00FAB913 /* SKEmitterNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB0CC818EB7D4A00FAB913 /* SKEmitterNode+SKTExtras.m */; };
+		78BB0CD118EB7D4A00FAB913 /* SKNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB0CCA18EB7D4A00FAB913 /* SKNode+SKTExtras.m */; };
+		78BB0CD218EB7D4A00FAB913 /* SKTAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB0CCC18EB7D4A00FAB913 /* SKTAudio.m */; };
+		78BB0CD318EB7D4A00FAB913 /* SKTUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78BB0CCE18EB7D4A00FAB913 /* SKTUtils.mm */; };
 		78CBEBCD1808A7A8006E7D4A /* WelcomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */; };
 		78D47ACD18400F650031FFC2 /* TomorrowScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D47ACC18400F650031FFC2 /* TomorrowScene.m */; };
 		78F2A30A183AF6360061D119 /* YesterdayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F2A309183AF6360061D119 /* YesterdayScene.m */; };
@@ -80,6 +85,16 @@
 		78B53C2418200CBD003A9160 /* PiScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiScene.h; sourceTree = "<group>"; };
 		78B53C2518200CBD003A9160 /* PiScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiScene.m; sourceTree = "<group>"; };
 		78B53C291821C00E003A9160 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		78BB0CC518EB7D4A00FAB913 /* SKAction+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKAction+SKTExtras.h"; sourceTree = "<group>"; };
+		78BB0CC618EB7D4A00FAB913 /* SKAction+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKAction+SKTExtras.m"; sourceTree = "<group>"; };
+		78BB0CC718EB7D4A00FAB913 /* SKEmitterNode+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKEmitterNode+SKTExtras.h"; sourceTree = "<group>"; };
+		78BB0CC818EB7D4A00FAB913 /* SKEmitterNode+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKEmitterNode+SKTExtras.m"; sourceTree = "<group>"; };
+		78BB0CC918EB7D4A00FAB913 /* SKNode+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKNode+SKTExtras.h"; sourceTree = "<group>"; };
+		78BB0CCA18EB7D4A00FAB913 /* SKNode+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKNode+SKTExtras.m"; sourceTree = "<group>"; };
+		78BB0CCB18EB7D4A00FAB913 /* SKTAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTAudio.h; sourceTree = "<group>"; };
+		78BB0CCC18EB7D4A00FAB913 /* SKTAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTAudio.m; sourceTree = "<group>"; };
+		78BB0CCD18EB7D4A00FAB913 /* SKTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTUtils.h; sourceTree = "<group>"; };
+		78BB0CCE18EB7D4A00FAB913 /* SKTUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKTUtils.mm; sourceTree = "<group>"; };
 		78CBEBCB1808A7A8006E7D4A /* WelcomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeMenu.h; sourceTree = "<group>"; };
 		78CBEBCC1808A7A8006E7D4A /* WelcomeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeMenu.m; sourceTree = "<group>"; };
 		78D47ACB18400F650031FFC2 /* TomorrowScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TomorrowScene.h; sourceTree = "<group>"; };
@@ -118,6 +133,7 @@
 		7843E15717FE271000F4DC5F = {
 			isa = PBXGroup;
 			children = (
+				78BB0CC418EB7D4A00FAB913 /* SKTUtils */,
 				7843E16B17FE271000F4DC5F /* Fix */,
 				7843E18F17FE271000F4DC5F /* FixTests */,
 				7843E16217FE271000F4DC5F /* Frameworks */,
@@ -215,6 +231,23 @@
 				780B95F618457C3A00FE55B4 /* IAPHelper.m */,
 			);
 			name = iPad;
+			sourceTree = "<group>";
+		};
+		78BB0CC418EB7D4A00FAB913 /* SKTUtils */ = {
+			isa = PBXGroup;
+			children = (
+				78BB0CC518EB7D4A00FAB913 /* SKAction+SKTExtras.h */,
+				78BB0CC618EB7D4A00FAB913 /* SKAction+SKTExtras.m */,
+				78BB0CC718EB7D4A00FAB913 /* SKEmitterNode+SKTExtras.h */,
+				78BB0CC818EB7D4A00FAB913 /* SKEmitterNode+SKTExtras.m */,
+				78BB0CC918EB7D4A00FAB913 /* SKNode+SKTExtras.h */,
+				78BB0CCA18EB7D4A00FAB913 /* SKNode+SKTExtras.m */,
+				78BB0CCB18EB7D4A00FAB913 /* SKTAudio.h */,
+				78BB0CCC18EB7D4A00FAB913 /* SKTAudio.m */,
+				78BB0CCD18EB7D4A00FAB913 /* SKTUtils.h */,
+				78BB0CCE18EB7D4A00FAB913 /* SKTUtils.mm */,
+			);
+			path = SKTUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,12 +353,17 @@
 			files = (
 				78CBEBCD1808A7A8006E7D4A /* WelcomeMenu.m in Sources */,
 				78D47ACD18400F650031FFC2 /* TomorrowScene.m in Sources */,
+				78BB0CD018EB7D4A00FAB913 /* SKEmitterNode+SKTExtras.m in Sources */,
 				7843E17217FE271000F4DC5F /* main.m in Sources */,
+				78BB0CD118EB7D4A00FAB913 /* SKNode+SKTExtras.m in Sources */,
 				7891753018183B7D00E777B3 /* Sentence.m in Sources */,
 				780B95F718457C3A00FE55B4 /* IAPHelper.m in Sources */,
 				78B53C2618200CBD003A9160 /* PiScene.m in Sources */,
 				7843E17F17FE271000F4DC5F /* SpriteMyScene.m in Sources */,
+				78BB0CD218EB7D4A00FAB913 /* SKTAudio.m in Sources */,
+				78BB0CD318EB7D4A00FAB913 /* SKTUtils.mm in Sources */,
 				78F2A30A183AF6360061D119 /* YesterdayScene.m in Sources */,
+				78BB0CCF18EB7D4A00FAB913 /* SKAction+SKTExtras.m in Sources */,
 				7843E17617FE271000F4DC5F /* SpriteAppDelegate.m in Sources */,
 				7843E17C17FE271000F4DC5F /* SpriteViewController.m in Sources */,
 				7891753B181EE77000E777B3 /* EmiScene.m in Sources */,

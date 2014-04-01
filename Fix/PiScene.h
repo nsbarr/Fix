@@ -10,8 +10,12 @@
 @class SpriteViewController;
 
 
+@import CoreMotion;
+
 @interface PiScene : SKScene
 
 @property (nonatomic, strong) SpriteViewController *spriteViewController;
+
+@property (weak, nonatomic) CMMotionManager* motionManager;
 
 @end
